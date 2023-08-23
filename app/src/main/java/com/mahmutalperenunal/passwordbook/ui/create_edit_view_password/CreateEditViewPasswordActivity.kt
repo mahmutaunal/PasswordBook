@@ -1,0 +1,67 @@
+package com.mahmutalperenunal.passwordbook.ui.create_edit_view_password
+
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.content.pm.ActivityInfo
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import com.mahmutalperenunal.passwordbook.R
+import com.mahmutalperenunal.passwordbook.database.PasswordManagerDatabase
+import com.mahmutalperenunal.passwordbook.databinding.ActivityCreateEditViewPasswordBinding
+import com.mahmutalperenunal.passwordbook.repository.PasswordManagerRepository
+import com.mahmutalperenunal.passwordbook.ui.factories.CreateEditViewPasswordViewModelProviderFactory
+import com.mahmutalperenunal.passwordbook.ui.password.PasswordActivity
+import com.mahmutalperenunal.passwordbook.ui.viewmodels.CreateEditViewPasswordViewModel
+
+class CreateEditViewPasswordActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityCreateEditViewPasswordBinding
+    lateinit var viewModel: CreateEditViewPasswordViewModel
+
+    private lateinit var command: String
+
+    @SuppressLint("SourceLockedOrientationActivity")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityCreateEditViewPasswordBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        val database = PasswordManagerDatabase(this)
+        val repository = PasswordManagerRepository(database)
+        val factory = CreateEditViewPasswordViewModelProviderFactory(repository)
+
+        viewModel = ViewModelProvider(this, factory)[CreateEditViewPasswordViewModel::class.java]
+
+        command = intent?.getStringExtra("command").toString()
+        val data = intent?.getSerializableExtra("data")
+
+        if(command=="view") {
+            Bundle().apply {
+                putSerializable("data",data)
+            }
+            findNavController(R.id.createEditViewPassword_fragment).popBackStack()
+            //findNavController(R.id.createEditViewPassword_fragment).navigate(R.id.viewPasswordsFragment,bundle)
+        }
+
+        if(command=="edit") {
+            Bundle().apply {
+                putSerializable("data",data)
+            }
+            findNavController(R.id.createEditViewPassword_fragment).popBackStack()
+            //findNavController(R.id.createEditViewPassword_fragment).navigate(R.id.editPasswordFragment,bundle)
+        }
+    }
+
+
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, PasswordActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/accountDetail_username"
+        android:title="@string/username_text" />
+
+    <item
+        android:id="@+id/accountDetail_email"
+        android:title="@string/mails_text" />
+
+    <item
+        android:id="@+id/accountDetail_phone"
+        android:title="@string/phone_number_text" />
+
+    <item
+        android:id="@+id/accountDetail_password"
+        android:title="@string/password_text" />
+
+    <item
+        android:id="@+id/accountDetail_website"
+        android:title="@string/website_text" />
+
+    <item
+        android:id="@+id/accountDetail_note"
+        android:title="@string/note_text" />
+
+</menu>

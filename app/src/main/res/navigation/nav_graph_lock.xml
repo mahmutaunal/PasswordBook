@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_lock"
+    app:startDestination="@id/lockPasswordFragment">
+
+    <fragment
+        android:id="@+id/createLockFragment"
+        android:name="com.mahmutalperenunal.passwordbook.ui.lock.fragments.CreateLockFragment"
+        android:label="fragment_create_lock"
+        tools:layout="@layout/fragment_create_lock" />
+    <fragment
+        android:id="@+id/lockPasswordFragment"
+        android:name="com.mahmutalperenunal.passwordbook.ui.lock.fragments.LockPasswordFragment"
+        android:label="fragment_lock_password"
+        tools:layout="@layout/fragment_lock_password" />
+    <fragment
+        android:id="@+id/updateLockPasswordFragment"
+        android:name="com.mahmutalperenunal.passwordbook.ui.lock.fragments.UpdateLockPasswordFragment"
+        android:label="fragment_update_lock_password"
+        tools:layout="@layout/fragment_update_lock_password" />
+
+</navigation>
