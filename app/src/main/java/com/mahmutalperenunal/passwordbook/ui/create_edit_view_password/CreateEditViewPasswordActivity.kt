@@ -39,20 +39,26 @@ class CreateEditViewPasswordActivity : AppCompatActivity() {
         command = intent?.getStringExtra("command").toString()
         val data = intent?.getSerializableExtra("data")
 
-        if(command=="view") {
-            Bundle().apply {
-                putSerializable("data",data)
+        if (command == "view") {
+            val bundle = Bundle().apply {
+                putSerializable("data", data)
             }
             findNavController(R.id.createEditViewPassword_fragment).popBackStack()
-            //findNavController(R.id.createEditViewPassword_fragment).navigate(R.id.viewPasswordsFragment,bundle)
+            findNavController(R.id.createEditViewPassword_fragment).navigate(
+                R.id.viewPasswordsFragment,
+                bundle
+            )
         }
 
-        if(command=="edit") {
-            Bundle().apply {
-                putSerializable("data",data)
+        if (command == "edit") {
+            val bundle = Bundle().apply {
+                putSerializable("data", data)
             }
             findNavController(R.id.createEditViewPassword_fragment).popBackStack()
-            //findNavController(R.id.createEditViewPassword_fragment).navigate(R.id.editPasswordFragment,bundle)
+            findNavController(R.id.createEditViewPassword_fragment).navigate(
+                R.id.editPasswordFragment,
+                bundle
+            )
         }
     }
 

@@ -31,6 +31,7 @@ import com.mahmutalperenunal.passwordbook.database.entities.Entry
 import com.mahmutalperenunal.passwordbook.databinding.ActivityPasswordBinding
 import com.mahmutalperenunal.passwordbook.repository.PasswordManagerRepository
 import com.mahmutalperenunal.passwordbook.security.EncryptionDecryption
+import com.mahmutalperenunal.passwordbook.ui.create_edit_view_password.CreateEditViewPasswordActivity
 import com.mahmutalperenunal.passwordbook.ui.factories.CreateEditViewPasswordViewModelProviderFactory
 import com.mahmutalperenunal.passwordbook.ui.viewmodels.CreateEditViewPasswordViewModel
 import com.mikepenz.materialdrawer.holder.BadgeStyle
@@ -73,21 +74,23 @@ class PasswordActivity : AppCompatActivity() {
         viewModel.filteredSearchList.postValue(emptyList)
 
         binding.passwordBtnNewPassword.setOnClickListener {
-            //val intent = Intent(this, CreateEditViewPasswordActivity::class.java)
+            val intent = Intent(this, CreateEditViewPasswordActivity::class.java)
             startActivity(intent)
             finish()
         }
 
         findNavController(R.id.password_fragment).addOnDestinationChangedListener { _, destination, _ ->
 
-            /*when (destination.id) {
-                R.id.passwordsFragment -> binding.passwordTopAppBar.title = resources.getString(R.string.app_name)
-                R.id.searchPasswordFragment -> binding.passwordTopAppBar.title = "Search"
-                R.id.favouritePasswordsFragment -> binding.passwordTopAppBar.title = "Profile"
-                R.id.generatePasswordFragment -> binding.passwordTopAppBar.title = "Generate Password"
+            when (destination.id) {
+                R.id.passwordFragment -> binding.passwordTopAppBar.title =
+                    resources.getString(R.string.app_name)
+                //R.id.searchPasswordFragment -> binding.passwordTopAppBar.title = "Search"
+                //R.id.favouritePasswordsFragment -> binding.passwordTopAppBar.title = "Profile"
+                R.id.generatePasswordFragment -> binding.passwordTopAppBar.title =
+                    "Generate Password"
             }
 
-            if (destination.id != R.id.searchPasswordFragment) {
+            /*if (destination.id != R.id.searchPasswordFragment) {
                 binding.passwordTopAppBar.collapseActionView()
             }*/
         }

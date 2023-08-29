@@ -37,17 +37,17 @@ class LockActivity : AppCompatActivity() {
 
         if (command == "createPassword") {
             findNavController(R.id.lock_fragment).popBackStack()
-            //findNavController(R.id.lock_fragment).navigate(R.id.createLockFragment)
+            findNavController(R.id.lock_fragment).navigate(R.id.createLockFragment)
         }
 
         if (command == "askForPassword") {
             findNavController(R.id.lock_fragment).popBackStack()
-            //findNavController(R.id.lock_fragment).navigate(R.id.lockPasswordFragment)
+            findNavController(R.id.lock_fragment).navigate(R.id.lockPasswordFragment)
         }
 
         if (command == "changePassword") {
             findNavController(R.id.lock_fragment).popBackStack()
-            //findNavController(R.id.lock_fragment).navigate(R.id.updateLockPasswordFragment)
+            findNavController(R.id.lock_fragment).navigate(R.id.updateLockPasswordFragment)
         }
     }
 

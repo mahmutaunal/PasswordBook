@@ -61,5 +61,4 @@ interface PasswordManagerDao {
     @Query("SELECT * FROM keys WHERE entryDetailId = :id")
     fun getAllEncryptedKeysOneTime(id: Int): List<EncryptedKey>
 
-
 }
