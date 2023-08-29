@@ -2,8 +2,10 @@ package com.mahmutalperenunal.passwordbook.ui.lock.fragments
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import com.mahmutalperenunal.passwordbook.database.entities.Lock
 import com.mahmutalperenunal.passwordbook.databinding.FragmentUpdateLockPasswordBinding
@@ -18,9 +20,16 @@ import kotlinx.coroutines.withContext
 
 class UpdateLockPasswordFragment : Fragment() {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val binding = FragmentUpdateLockPasswordBinding.bind(view)
+    private var _binding: FragmentUpdateLockPasswordBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentUpdateLockPasswordBinding.inflate(inflater, container, false)
+        val view = binding.root
 
         binding.updateLockPasswordChangePasswordScrollView.post {
             binding.updateLockPasswordChangePasswordScrollView.fullScroll(View.FOCUS_DOWN)
@@ -121,6 +130,7 @@ class UpdateLockPasswordFragment : Fragment() {
 
         }
 
+        return view
     }
 
 }

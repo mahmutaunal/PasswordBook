@@ -7,8 +7,10 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
+import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.PopupMenu
 import androidx.core.view.children
@@ -45,7 +47,9 @@ import java.util.Random
 
 class CreatePasswordFragment : Fragment() {
 
-    private lateinit var binding: FragmentCreatePasswordBinding
+    private var _binding: FragmentCreatePasswordBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var adapter: PasswordAccountInfoAdapter
 
     private val accountDetailList = mutableListOf<EntryDetail>()
@@ -56,10 +60,13 @@ class CreatePasswordFragment : Fragment() {
         return random.nextInt(to - from) + from
     }
 
-    @SuppressLint("InflateParams")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding = FragmentCreatePasswordBinding.bind(view)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentCreatePasswordBinding.inflate(inflater, container, false)
+        val view = binding.root
 
         val mBottomSheetDialog = RoundedBottomSheetDialog(requireContext())
         val sheetView = layoutInflater.inflate(R.layout.bottom_sheet_options, null)
@@ -294,6 +301,7 @@ class CreatePasswordFragment : Fragment() {
 
         }
 
+        return view
     }
 
     @SuppressLint("NotifyDataSetChanged")

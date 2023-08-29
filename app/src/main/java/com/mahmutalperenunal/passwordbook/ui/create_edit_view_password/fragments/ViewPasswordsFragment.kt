@@ -2,8 +2,10 @@ package com.mahmutalperenunal.passwordbook.ui.create_edit_view_password.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mahmutalperenunal.passwordbook.R
@@ -16,13 +18,18 @@ import com.mahmutalperenunal.passwordbook.util.CompanyListData
 
 class ViewPasswordsFragment : Fragment() {
 
-    private lateinit var binding: FragmentViewPasswordsBinding
+    private var _binding: FragmentViewPasswordsBinding? = null
+    private val binding get() = _binding!!
 
     private val args: ViewPasswordsFragmentArgs by navArgs()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding = FragmentViewPasswordsBinding.bind(view)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentViewPasswordsBinding.inflate(inflater, container, false)
+        val view = binding.root
 
         val data = args.data
 
@@ -73,6 +80,7 @@ class ViewPasswordsFragment : Fragment() {
             entryDetailAdapter.differ.submitList(it)
         }
 
+        return view
     }
 
 }

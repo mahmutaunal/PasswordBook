@@ -1,12 +1,13 @@
 package com.mahmutalperenunal.passwordbook.ui.lock.fragments
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.view.ViewGroup
 import com.deishelon.roundedbottomsheet.RoundedBottomSheetDialog
 import com.mahmutalperenunal.passwordbook.R
 import com.mahmutalperenunal.passwordbook.database.entities.Lock
@@ -25,12 +26,18 @@ import kotlinx.coroutines.withContext
 
 class CreateLockFragment : Fragment() {
 
+    private var _binding: FragmentCreateLockBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var dialog: ProgressDialog
 
-    @SuppressLint("InflateParams")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val binding = FragmentCreateLockBinding.bind(view)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentCreateLockBinding.inflate(inflater, container, false)
+        val view = binding.root
 
         binding.createLockGetStartedButton.setOnClickListener {
             val mBottomSheetDialog = RoundedBottomSheetDialog(requireContext())
@@ -126,6 +133,8 @@ class CreateLockFragment : Fragment() {
             }
 
         }
+
+        return view
     }
 
 }

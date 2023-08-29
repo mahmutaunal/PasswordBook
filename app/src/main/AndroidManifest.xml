@@ -4,7 +4,6 @@
 
     <application
         android:allowBackup="true"
-        android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/ic_logo"
@@ -12,7 +11,6 @@
         android:roundIcon="@drawable/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.PasswordBook"
-        tools:replace="android:appComponentFactory"
         tools:targetApi="31">
         <activity
             android:name=".ui.create_edit_view_password.CreateEditViewPasswordActivity"

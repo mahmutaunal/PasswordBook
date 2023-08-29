@@ -3,8 +3,10 @@ package com.mahmutalperenunal.passwordbook.ui.lock.fragments
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.view.ViewGroup
 import com.google.android.material.snackbar.Snackbar
 import com.mahmutalperenunal.passwordbook.databinding.FragmentLockPasswordBinding
 import com.mahmutalperenunal.passwordbook.security.EncryptionDecryption
@@ -18,11 +20,20 @@ import kotlinx.coroutines.withContext
 
 class LockPasswordFragment : Fragment() {
 
+    private var _binding: FragmentLockPasswordBinding? = null
+    private val binding get() = _binding!!
+
     @SuppressLint("SetTextI18n")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentLockPasswordBinding.inflate(inflater, container, false)
+        val view = binding.root
+
         super.onViewCreated(view, savedInstanceState)
         val viewModel = (activity as LockActivity).viewModel
-        val binding = FragmentLockPasswordBinding.bind(view)
 
         var incorrectPasswordCount = 0
 
@@ -85,6 +96,7 @@ class LockPasswordFragment : Fragment() {
 
         }
 
+        return view
     }
 
 }

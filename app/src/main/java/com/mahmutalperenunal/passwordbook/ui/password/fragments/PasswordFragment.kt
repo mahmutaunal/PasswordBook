@@ -3,9 +3,10 @@ package com.mahmutalperenunal.passwordbook.ui.password.fragments
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
-import androidx.lifecycle.Observer
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mahmutalperenunal.passwordbook.adapter.PasswordAdapter
 import com.mahmutalperenunal.passwordbook.databinding.FragmentPasswordBinding
@@ -15,14 +16,20 @@ import com.mahmutalperenunal.passwordbook.ui.viewmodels.CreateEditViewPasswordVi
 
 class PasswordFragment : Fragment() {
 
-    private lateinit var binding: FragmentPasswordBinding
+    private var _binding: FragmentPasswordBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var viewModel: CreateEditViewPasswordViewModel
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewModel = (activity as PasswordActivity).viewModel
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentPasswordBinding.inflate(inflater, container, false)
+        val view = binding.root
 
-        binding = FragmentPasswordBinding.bind(view)
+        viewModel = (activity as PasswordActivity).viewModel
 
         val adapter = PasswordAdapter(
             requireContext(),
@@ -52,7 +59,7 @@ class PasswordFragment : Fragment() {
 
         }
 
-
+        return view
     }
 
 }

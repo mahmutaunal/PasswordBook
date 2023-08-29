@@ -6,7 +6,7 @@ import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.mahmutalperenunal.passwordbook.R
 import com.mahmutalperenunal.passwordbook.database.PasswordManagerDatabase
 import com.mahmutalperenunal.passwordbook.databinding.ActivityLockBinding
@@ -35,19 +35,23 @@ class LockActivity : AppCompatActivity() {
 
         val command = intent.getStringExtra("command")
 
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.lock_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+
         if (command == "createPassword") {
-            findNavController(R.id.lock_fragment).popBackStack()
-            findNavController(R.id.lock_fragment).navigate(R.id.createLockFragment)
+            navController.popBackStack()
+            navController.navigate(R.id.createLockFragment)
         }
 
         if (command == "askForPassword") {
-            findNavController(R.id.lock_fragment).popBackStack()
-            findNavController(R.id.lock_fragment).navigate(R.id.lockPasswordFragment)
+            navController.popBackStack()
+            navController.navigate(R.id.lockPasswordFragment)
         }
 
         if (command == "changePassword") {
-            findNavController(R.id.lock_fragment).popBackStack()
-            findNavController(R.id.lock_fragment).navigate(R.id.updateLockPasswordFragment)
+            navController.popBackStack()
+            navController.navigate(R.id.updateLockPasswordFragment)
         }
     }
 

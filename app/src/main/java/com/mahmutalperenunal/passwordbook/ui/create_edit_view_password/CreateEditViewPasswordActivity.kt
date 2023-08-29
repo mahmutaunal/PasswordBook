@@ -6,7 +6,7 @@ import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.mahmutalperenunal.passwordbook.R
 import com.mahmutalperenunal.passwordbook.database.PasswordManagerDatabase
 import com.mahmutalperenunal.passwordbook.databinding.ActivityCreateEditViewPasswordBinding
@@ -39,26 +39,24 @@ class CreateEditViewPasswordActivity : AppCompatActivity() {
         command = intent?.getStringExtra("command").toString()
         val data = intent?.getSerializableExtra("data")
 
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.createEditViewPassword_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+
         if (command == "view") {
             val bundle = Bundle().apply {
                 putSerializable("data", data)
             }
-            findNavController(R.id.createEditViewPassword_fragment).popBackStack()
-            findNavController(R.id.createEditViewPassword_fragment).navigate(
-                R.id.viewPasswordsFragment,
-                bundle
-            )
+            navController.popBackStack()
+            navController.navigate(R.id.viewPasswordsFragment, bundle)
         }
 
         if (command == "edit") {
             val bundle = Bundle().apply {
                 putSerializable("data", data)
             }
-            findNavController(R.id.createEditViewPassword_fragment).popBackStack()
-            findNavController(R.id.createEditViewPassword_fragment).navigate(
-                R.id.editPasswordFragment,
-                bundle
-            )
+            navController.popBackStack()
+            navController.navigate(R.id.editPasswordFragment, bundle)
         }
     }
 

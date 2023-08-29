@@ -3,8 +3,10 @@ package com.mahmutalperenunal.passwordbook.ui.password.fragments
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import com.google.android.material.slider.LabelFormatter
 import com.google.android.material.slider.Slider
@@ -15,9 +17,16 @@ import java.util.Random
 
 class GeneratePasswordFragment : Fragment() {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val binding = FragmentGeneratePasswordBinding.bind(view)
+    private var _binding: FragmentGeneratePasswordBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentGeneratePasswordBinding.inflate(inflater, container, false)
+        val view = binding.root
 
         var passwordLength = 13
 
@@ -114,6 +123,8 @@ class GeneratePasswordFragment : Fragment() {
             clipboard?.setPrimaryClip(clip)
             Snackbar.make(view, "Password Copied to Clipboard", Snackbar.LENGTH_SHORT).show()
         }
+
+        return view
     }
 
     private fun getPasswordScore(password: String): Int {

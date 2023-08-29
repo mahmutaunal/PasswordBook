@@ -47,7 +47,7 @@ import com.mikepenz.materialdrawer.widget.AccountHeaderView
 class PasswordActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityPasswordBinding
-    private lateinit var toggle: ActionBarDrawerToggle
+
     lateinit var viewModel: CreateEditViewPasswordViewModel
 
     private var doubleBackToExitPressedOnce = false

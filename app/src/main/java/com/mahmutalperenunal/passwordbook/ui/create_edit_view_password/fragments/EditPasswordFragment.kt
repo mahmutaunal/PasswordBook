@@ -46,14 +46,9 @@ import java.util.Collections
 
 class EditPasswordFragment : Fragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_password, container, false)
-    }
+    private var _binding: FragmentEditPasswordBinding? = null
+    private val binding get() = _binding!!
 
-    private lateinit var binding: FragmentEditPasswordBinding
     private lateinit var adapter: PasswordAccountInfoAdapter
 
     private lateinit var viewModel: CreateEditViewPasswordViewModel
@@ -62,9 +57,11 @@ class EditPasswordFragment : Fragment() {
 
     private val args: EditPasswordFragmentArgs by navArgs()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding = FragmentEditPasswordBinding.bind(view)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentEditPasswordBinding.inflate(inflater, container, false)
+        val view = binding.root
 
         val mBottomSheetDialog = RoundedBottomSheetDialog(requireContext())
         val sheetView = layoutInflater.inflate(R.layout.bottom_sheet_options, null)
@@ -327,6 +324,7 @@ class EditPasswordFragment : Fragment() {
 
         }
 
+        return view
     }
 
     @SuppressLint("NotifyDataSetChanged")
