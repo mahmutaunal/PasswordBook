@@ -3,6 +3,13 @@
     <style name="Base.Theme.PasswordBook" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/background</item>
+        <!-- status bar -->
+        <item name="android:windowLightStatusBar">true</item>
+        <!-- translucent navigation bar -->
+        <item name="android:navigationBarColor">@color/background</item>
+        <item name="android:windowLightNavigationBar">true</item>
     </style>
 
     <style name="Theme.PasswordBook" parent="Base.Theme.PasswordBook" />

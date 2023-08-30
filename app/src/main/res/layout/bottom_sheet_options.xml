@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="top"
-        app:boxBackgroundColor="#ffffff"
+        app:boxBackgroundColor="@color/edittext_color"
         app:boxBackgroundMode="outline"
         app:boxStrokeColor="#2F3061"
         app:errorEnabled="true"
@@ -46,6 +46,7 @@
             android:inputType="text"
             android:padding="15dp"
             android:textSize="18sp"
+            tools:ignore="VisualLintTextFieldSize,TextContrastCheck"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="160dp" />
 
@@ -59,10 +60,12 @@
         android:backgroundTint="#2F3061"
         android:padding="10dp"
         android:text="@string/add_text"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bottomSheetOptions_editText" />
+        app:layout_constraintTop_toBottomOf="@+id/bottomSheetOptions_editText"
+        tools:ignore="TextContrastCheck,VisualLintButtonSize" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

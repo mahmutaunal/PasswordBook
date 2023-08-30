@@ -15,10 +15,11 @@
         android:background="@null"
         android:drawableStart="@drawable/ic_search"
         android:drawablePadding="15dp"
+        android:drawableTint="@color/icon_color"
         android:hint="@string/search"
         android:padding="10dp"
         android:textSize="20sp"
-        tools:ignore="Autofill,TextFields" />
+        tools:ignore="Autofill,TextFields,TextContrastCheck,VisualLintTextFieldSize" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCompanyChooser"

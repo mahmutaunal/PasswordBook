@@ -26,6 +26,7 @@
         android:paddingStart="10dp"
         android:paddingEnd="20dp"
         android:text="@string/instagram_text"
+        android:textColor="@color/icon_color"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/logoCompany_companyLogo_imageView"
         app:layout_constraintEnd_toEndOf="parent"

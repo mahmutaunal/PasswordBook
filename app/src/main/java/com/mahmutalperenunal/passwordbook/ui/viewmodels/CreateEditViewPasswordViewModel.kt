@@ -67,5 +67,4 @@ class CreateEditViewPasswordViewModel(private val repository: PasswordManagerRep
 
     fun getAllEncryptedKeysOneTime(id: Int) = repository.getAllEncryptedKeysOneTime(id)
 
-
 }

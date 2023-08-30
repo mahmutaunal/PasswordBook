@@ -51,5 +51,4 @@ class PasswordManagerRepository(private val db: PasswordManagerDatabase) {
     fun getAllEncryptedKeysOneTime(id: Int) =
         db.getPasswordManagerDao().getAllEncryptedKeysOneTime(id)
 
-
 }

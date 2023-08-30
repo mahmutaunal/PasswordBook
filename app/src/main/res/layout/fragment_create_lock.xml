@@ -41,7 +41,7 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="@string/app_name"
-                android:textColor="#343434"
+                android:textColor="@color/icon_color"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -71,23 +71,12 @@
                 android:layout_marginTop="20dp"
                 android:backgroundTint="#388E3C"
                 android:text="@string/get_started_text"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/createLock_description_textView"
                 tools:ignore="TextContrastCheck,VisualLintButtonSize" />
-
-            <TextView
-                android:id="@+id/createLock_learnMore_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/learn_more_text"
-                android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/createLock_getStarted_button" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

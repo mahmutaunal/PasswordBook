@@ -49,9 +49,9 @@ class CreateLockFragment : Fragment() {
 
             mBottomSheetBinding.createLockBottomSheetBruteForceHelpImageView.setOnClickListener {
                 AlertDialog.Builder(requireContext())
-                    .setTitle("Anti Brute Force Mechanism")
-                    .setMessage("If you enable this mechanism, you would need to wait for 30 seconds every time you enter a wrong password for three consecutive times. We highly recommend you to enable this option")
-                    .setPositiveButton("Ok") { d, _ ->
+                    .setTitle(R.string.anti_bruteforce_mechanism_text)
+                    .setMessage(R.string.anti_bruteforce_mechanism_description_text)
+                    .setPositiveButton(getString(R.string.ok_text)) { d, _ ->
                         d.dismiss()
                     }.create().show()
             }
@@ -74,24 +74,24 @@ class CreateLockFragment : Fragment() {
 
                 if (password.isBlank() || password.isEmpty()) {
                     mBottomSheetBinding.createLockBottomSheetLayoutLockPasswordEditText.error =
-                        "Password cannot be blank"
+                        getString(R.string.password_cannot_blank_text)
                 } else {
                     if (password.length <= 3) {
                         mBottomSheetBinding.createLockBottomSheetLayoutLockPasswordEditText.error =
-                            "Your password should be at least 4 letters long"
+                            getString(R.string.password_must_least_4_letters_long_text)
                     } else {
                         if (hint.isBlank() || hint.isEmpty()) {
                             mBottomSheetBinding.createLockBottomSheetLayoutLockPasswordEditText.isErrorEnabled =
                                 false
                             mBottomSheetBinding.createLockBottomSheetLayoutLockPasswordHintEditText.error =
-                                "Password Hint cannot be blank"
+                                getString(R.string.password_hint_cannot_blank_text)
                         } else {
                             CoroutineScope(Dispatchers.IO).launch {
                                 withContext(Dispatchers.Main) {
                                     dialog = ProgressDialog.show(
                                         requireContext(),
-                                        "Please wait",
-                                        "We are creating your account",
+                                        getString(R.string.please_wait_text),
+                                        getString(R.string.creating_account_text),
                                         true,
                                         false
                                     )

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.mahmutalperenunal.passwordbook.R
 import com.mahmutalperenunal.passwordbook.database.entities.Lock
 import com.mahmutalperenunal.passwordbook.databinding.FragmentUpdateLockPasswordBinding
 import com.mahmutalperenunal.passwordbook.security.EncryptionDecryption
@@ -39,9 +40,9 @@ class UpdateLockPasswordFragment : Fragment() {
 
         binding.updateLockPasswordBruteForceHelpButton.setOnClickListener {
             AlertDialog.Builder(requireContext())
-                .setTitle("Anti Brute Force Mechanism")
-                .setMessage("If you enable this mechanism, you would need to wait for 30 seconds every time you enter a wrong password for three consecutive times. We highly recommend you to enable this option")
-                .setPositiveButton("Ok") { d, _ ->
+                .setTitle(getString(R.string.anti_bruteforce_mechanism_text))
+                .setMessage(getString(R.string.anti_bruteforce_mechanism_description_text))
+                .setPositiveButton(getString(R.string.ok_text)) { d, _ ->
                     d.dismiss()
                 }.create().show()
         }
@@ -68,12 +69,12 @@ class UpdateLockPasswordFragment : Fragment() {
                 if (oldPassword.isEmpty() || oldPassword.isBlank()) {
                     binding.updateLockPasswordOldLockPasswordEditText.isErrorEnabled = true
                     binding.updateLockPasswordOldLockPasswordEditText.error =
-                        "Old Password cannot be blank"
+                        getString(R.string.old_password_cannot_blank_text)
                 } else {
                     if (oldPassword != correctOldPassword) {
                         binding.updateLockPasswordOldLockPasswordEditText.isErrorEnabled = true
                         binding.updateLockPasswordOldLockPasswordEditText.error =
-                            "Incorrect Old Password"
+                            getString(R.string.incorrect_old_password_text)
                     } else {
                         binding.updateLockPasswordOldLockPasswordEditText.isErrorEnabled = false
 
@@ -86,17 +87,17 @@ class UpdateLockPasswordFragment : Fragment() {
 
                         if (password.isBlank() || password.isEmpty()) {
                             binding.updateLockPasswordLockPasswordEditText.error =
-                                "Password cannot be blank"
+                                getString(R.string.password_cannot_blank_text)
                         } else {
                             if (password.length <= 3) {
                                 binding.updateLockPasswordLockPasswordEditText.error =
-                                    "Your password should be at least 4 letters long"
+                                    getString(R.string.password_must_least_4_letters_long_text)
                             } else {
                                 if (hint.isBlank() || hint.isEmpty()) {
                                     binding.updateLockPasswordLockPasswordEditText.isErrorEnabled =
                                         false
                                     binding.updateLockPasswordLockPasswordHintEditText.error =
-                                        "Password Hint cannot be blank"
+                                        getString(R.string.password_hint_cannot_blank_text)
                                 } else {
                                     CoroutineScope(Dispatchers.IO).launch {
                                         val encryptedPasswordObject = securityClass.encrypt(
@@ -114,7 +115,7 @@ class UpdateLockPasswordFragment : Fragment() {
                                         withContext(Dispatchers.Main) {
                                             Toast.makeText(
                                                 requireContext().applicationContext,
-                                                "Password Changed Successfully",
+                                                getString(R.string.password_changed_succesfully_text),
                                                 Toast.LENGTH_SHORT
                                             ).show()
                                             requireActivity().finish()

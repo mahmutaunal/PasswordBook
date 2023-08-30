@@ -142,7 +142,11 @@ class CreatePasswordFragment : Fragment() {
             iBottomSheetDialog.show()
             companyAdapter.setOnItemClickListener {
                 companyIcon = it.id
-                Snackbar.make(view, "${it.companyName}'s logo selected", Snackbar.LENGTH_SHORT)
+                Snackbar.make(
+                    view,
+                    "${it.companyName} " + getString(R.string.logo_selected_text),
+                    Snackbar.LENGTH_SHORT
+                )
                     .show()
                 iBottomSheetDialog.dismiss()
             }
@@ -236,8 +240,8 @@ class CreatePasswordFragment : Fragment() {
 
                         val dialog = ProgressDialog.show(
                             requireContext(),
-                            "Saving",
-                            "Please wait, we are encrypting and saving all your information",
+                            getString(R.string.saving_text),
+                            getString(R.string.saving_description_text),
                             true,
                             false
                         )
@@ -288,15 +292,23 @@ class CreatePasswordFragment : Fragment() {
                     } else {
                         Snackbar.make(
                             view,
-                            "You must add at least one detail about your account",
+                            getString(R.string.account_detail_error_text),
                             Snackbar.LENGTH_SHORT
                         ).show()
                     }
                 } else {
-                    Snackbar.make(view, "You must select a category", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(
+                        view,
+                        getString(R.string.select_category_text),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                 }
             } else {
-                Snackbar.make(view, "Title cannot be blank", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(
+                    view,
+                    getString(R.string.title_cannot_blank_text),
+                    Snackbar.LENGTH_SHORT
+                ).show()
             }
 
         }
@@ -319,7 +331,7 @@ class CreatePasswordFragment : Fragment() {
         when (optionType) {
             0 -> {
                 detailType = "Username"
-                sheetBinding.bottomSheetOptionsEditText.helperText = "Eg. user710"
+                sheetBinding.bottomSheetOptionsEditText.helperText = getString(R.string.eg_text) + getString(R.string.username_text)
                 sheetBinding.bottomSheetOptionsEditText.editText?.inputType =
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_NORMAL
             }
@@ -327,7 +339,7 @@ class CreatePasswordFragment : Fragment() {
             1 -> {
                 detailType = "Email"
                 sheetBinding.bottomSheetOptionsEditText.isPasswordVisibilityToggleEnabled = false
-                sheetBinding.bottomSheetOptionsEditText.helperText = "Eg. user@example.com"
+                sheetBinding.bottomSheetOptionsEditText.helperText = getString(R.string.eg_text) + getString(R.string.sample_email_text)
                 sheetBinding.bottomSheetOptionsEditText.editText?.inputType =
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_NORMAL
 
@@ -338,13 +350,13 @@ class CreatePasswordFragment : Fragment() {
                 sheetBinding.bottomSheetOptionsEditText.isPasswordVisibilityToggleEnabled = false
                 sheetBinding.bottomSheetOptionsEditText.editText?.inputType =
                     InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL or InputType.TYPE_NUMBER_FLAG_SIGNED or InputType.TYPE_CLASS_PHONE
-                sheetBinding.bottomSheetOptionsEditText.helperText = "Eg. +91 9876012345"
+                sheetBinding.bottomSheetOptionsEditText.helperText = getString(R.string.eg_text) + getString(R.string.sample_phone_number_text)
             }
 
             3 -> {
                 detailType = "Password"
                 sheetBinding.bottomSheetOptionsEditText.isPasswordVisibilityToggleEnabled = true
-                sheetBinding.bottomSheetOptionsEditText.helperText = "Always keep strong passwords"
+                sheetBinding.bottomSheetOptionsEditText.helperText = getString(R.string.strong_password_text)
                 sheetBinding.bottomSheetOptionsEditText.editText?.inputType =
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             }
@@ -352,7 +364,7 @@ class CreatePasswordFragment : Fragment() {
             4 -> {
                 detailType = "Website"
                 sheetBinding.bottomSheetOptionsEditText.isPasswordVisibilityToggleEnabled = false
-                sheetBinding.bottomSheetOptionsEditText.helperText = "Eg. www.example.com"
+                sheetBinding.bottomSheetOptionsEditText.helperText = getString(R.string.eg_text) + getString(R.string.sample_website_text)
                 sheetBinding.bottomSheetOptionsEditText.editText?.inputType =
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_NORMAL
             }
@@ -361,8 +373,7 @@ class CreatePasswordFragment : Fragment() {
                 detailType = "Notes"
                 sheetBinding.bottomSheetOptionsEditText.isPasswordVisibilityToggleEnabled = false
                 sheetBinding.bottomSheetOptionsEditText.editText?.minLines = 3
-                sheetBinding.bottomSheetOptionsEditText.helperText =
-                    "You can add some notes or details here"
+                sheetBinding.bottomSheetOptionsEditText.helperText = getString(R.string.some_notes_text)
                 sheetBinding.bottomSheetOptionsEditText.editText?.inputType =
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_MULTI_LINE
             }
@@ -377,7 +388,7 @@ class CreatePasswordFragment : Fragment() {
                 sheetBinding.bottomSheetOptionsEditText.editText?.text.toString(),
                 optionType
             )
-            if (validateMessage == "Validated") {
+            if (validateMessage == getString(R.string.validated_text)) {
                 val accountDetailObj = EntryDetail(
                     1,
                     1,
@@ -399,9 +410,9 @@ class CreatePasswordFragment : Fragment() {
             0 -> {
                 // Validate for Username
                 return if (nullCheckInput(input)) {
-                    "Validated"
+                    getString(R.string.validated_text)
                 } else {
-                    "You must fill username"
+                    getString(R.string.username_cannot_blank_text)
                 }
             }
 
@@ -409,12 +420,12 @@ class CreatePasswordFragment : Fragment() {
                 // Validate for Email
                 return if (nullCheckInput(input)) {
                     if (input.contains("@") && input.contains(".")) {
-                        "Validated"
+                        getString(R.string.validated_text)
                     } else {
-                        "Incorrect Email Format"
+                        getString(R.string.incorrect_email_format_text)
                     }
                 } else {
-                    "Username cannot be blank"
+                    getString(R.string.email_cannot_blank_text)
                 }
             }
 
@@ -422,21 +433,21 @@ class CreatePasswordFragment : Fragment() {
                 // Validate for Phone Number
                 return if (nullCheckInput(input)) {
                     if (input.length > 2) {
-                        "Validated"
+                        getString(R.string.validated_text)
                     } else {
-                        "Phone number should be more than two digits"
+                        getString(R.string.phone_number_must_more_than_two_digits_text)
                     }
                 } else {
-                    "Phone number cannot be blank"
+                    getString(R.string.phone_number_cannot_blank_text)
                 }
             }
 
             3 -> {
                 // Validate for Password
                 return if (nullCheckInput(input)) {
-                    "Validated"
+                    getString(R.string.validated_text)
                 } else {
-                    "Password cannot be blank"
+                    getString(R.string.password_cannot_blank_text)
                 }
             }
 
@@ -444,25 +455,25 @@ class CreatePasswordFragment : Fragment() {
                 // Validate for Website
                 return if (nullCheckInput(input)) {
                     if (input.contains(".")) {
-                        "Validated"
+                        getString(R.string.validated_text)
                     } else {
-                        "Incorrect Website Format"
+                        getString(R.string.incorrect_website_format_text)
                     }
                 } else {
-                    "Website URL cannot be blank"
+                    getString(R.string.website_cannot_blank_text)
                 }
             }
 
             5 -> {
                 // Validate for Note
                 return if (nullCheckInput(input)) {
-                    "Validated"
+                    getString(R.string.validated_text)
                 } else {
-                    "Note cannot be blank"
+                    getString(R.string.note_cannot_blank_text)
                 }
             }
 
-            else -> return "An Error Occurred"
+            else -> return getString(R.string.error_text)
         }
     }
 

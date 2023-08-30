@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.slider.LabelFormatter
 import com.google.android.material.slider.Slider
 import com.google.android.material.snackbar.Snackbar
+import com.mahmutalperenunal.passwordbook.R
 import com.mahmutalperenunal.passwordbook.databinding.FragmentGeneratePasswordBinding
 import nu.aaro.gustav.passwordstrengthmeter.PasswordStrengthCalculator
 import java.util.Random
@@ -100,10 +101,18 @@ class GeneratePasswordFragment : Fragment() {
 
             if (generatedPassword.isBlank()) {
                 if (passwordLength == 0) {
-                    Snackbar.make(view, "Password length cannot be zero", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(
+                        view,
+                        getString(R.string.password_length_cannot_zero_text),
+                        Snackbar.LENGTH_SHORT
+                    )
                         .show()
                 } else {
-                    Snackbar.make(view, "Please check at least one item", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(
+                        view,
+                        getString(R.string.please_check_item_text),
+                        Snackbar.LENGTH_SHORT
+                    )
                         .show()
                 }
             } else {
@@ -117,11 +126,12 @@ class GeneratePasswordFragment : Fragment() {
                 ClipboardManager::class.java
             )
             val clip = ClipData.newPlainText(
-                "Generated Password",
+                getString(R.string.generated_password_text),
                 binding.generatePasswordGeneratedPasswordEditText.text.toString()
             )
             clipboard?.setPrimaryClip(clip)
-            Snackbar.make(view, "Password Copied to Clipboard", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(view, getString(R.string.password_copied_text), Snackbar.LENGTH_SHORT)
+                .show()
         }
 
         return view

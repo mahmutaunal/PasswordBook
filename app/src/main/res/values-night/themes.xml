@@ -3,5 +3,10 @@
     <style name="Base.Theme.PasswordBook" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/background</item>
+        <!-- translucent navigation bar -->
+        <item name="android:navigationBarColor">@color/background</item>
+        <item name="android:navigationIcon">@color/white</item>
     </style>
 </resources>

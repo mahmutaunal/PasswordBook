@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.snackbar.Snackbar
+import com.mahmutalperenunal.passwordbook.R
 import com.mahmutalperenunal.passwordbook.databinding.FragmentLockPasswordBinding
 import com.mahmutalperenunal.passwordbook.security.EncryptionDecryption
 import com.mahmutalperenunal.passwordbook.ui.lock.LockActivity
@@ -40,7 +41,7 @@ class LockPasswordFragment : Fragment() {
         viewModel.getLockPassword().observe(viewLifecycleOwner) { lockData ->
 
             binding.lockPasswordLockPasswordEditText.helperText =
-                "Password Hint: ${lockData[0].hint}"
+                "${getString(R.string.password_hint_text)}: ${lockData[0].hint}"
             binding.lockPasswordLoginAccountButton.setOnClickListener {
                 val securityClass = EncryptionDecryption()
                 val correctPassword = securityClass.decrypt(
@@ -50,14 +51,14 @@ class LockPasswordFragment : Fragment() {
                 )
                 val password = binding.lockPasswordLockPasswordEditText.editText?.text.toString()
                 if (password.isEmpty() || password.isBlank()) {
-                    Snackbar.make(view, "Password cannot be blank", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(view, getString(R.string.password_cannot_blank_text), Snackbar.LENGTH_SHORT).show()
                 } else {
                     if (password == correctPassword) {
                         val intent = Intent(requireContext(), PasswordActivity::class.java)
                         startActivity(intent)
                         (activity as LockActivity).finish()
                     } else {
-                        Snackbar.make(view, "Incorrect Password!", Snackbar.LENGTH_SHORT).show()
+                        Snackbar.make(view, getString(R.string.incorrect_password_text), Snackbar.LENGTH_SHORT).show()
 
                         if (lockData[0].antiBruteforceEnabled == 1) {
                             incorrectPasswordCount += 1
@@ -69,7 +70,7 @@ class LockPasswordFragment : Fragment() {
                                             binding.lockPasswordAntiBruteforceCountdownTextView.visibility =
                                                 View.VISIBLE
                                             binding.lockPasswordAntiBruteforceCountdownTextView.text =
-                                                "Try again after $timer Seconds"
+                                                "${getString(R.string.please_wait_text)}: $timer ${getString(R.string.seconds_text)}"
                                             binding.lockPasswordLockPasswordEditText.editText?.isEnabled =
                                                 false
                                             binding.lockPasswordLoginAccountButton.isEnabled = false

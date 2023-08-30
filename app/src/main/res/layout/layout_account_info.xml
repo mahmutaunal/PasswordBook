@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#ffffff"
+    android:background="@color/background"
     android:paddingLeft="10dp"
     android:paddingTop="10dp"
     android:paddingRight="10dp"
@@ -18,7 +18,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/accountInfo_linearLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <LinearLayout
         android:id="@+id/accountInfo_linearLayout"
@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/mails_text"
-            android:textColor="#2a2a2a"
+            android:textColor="@color/icon_color"
             android:textSize="13sp" />
 
         <TextView
@@ -43,8 +43,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/sample_email_text"
-            android:textColor="#7f7d88"
-            android:textSize="18sp" />
+            android:textColor="#A9A6B5"
+            android:textSize="18sp"
+            tools:ignore="TextContrastCheck" />
 
     </LinearLayout>
 

@@ -87,7 +87,7 @@ class PasswordActivity : AppCompatActivity() {
                 //R.id.searchPasswordFragment -> binding.passwordTopAppBar.title = "Search"
                 //R.id.favouritePasswordsFragment -> binding.passwordTopAppBar.title = "Profile"
                 R.id.generatePasswordFragment -> binding.passwordTopAppBar.title =
-                    "Generate Password"
+                    getString(R.string.generate_password_text)
             }
 
             /*if (destination.id != R.id.searchPasswordFragment) {

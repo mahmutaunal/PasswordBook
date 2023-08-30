@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:hint="@string/create_password_text"
-        app:boxBackgroundColor="#ffffff"
+        app:boxBackgroundColor="@color/edittext_color"
         app:boxBackgroundMode="outline"
         app:helperText="@string/create_password_description_text"
         app:helperTextEnabled="true"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:hint="@string/password_hint_text"
-        app:boxBackgroundColor="#ffffff"
+        app:boxBackgroundColor="@color/edittext_color"
         app:boxBackgroundMode="outline"
         app:helperText="@string/password_hint_description_text"
         app:helperTextEnabled="true"
@@ -81,7 +81,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="#303F9F"
-            tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck" />
 
         <TextView
             android:id="@+id/textView2"
@@ -100,7 +100,6 @@
             android:id="@+id/createLockBottomSheet_antiBruteForce_checkBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:buttonTint="#2F3061"
             android:checked="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -115,6 +114,7 @@
         android:layout_marginTop="15dp"
         android:backgroundTint="#2f3064"
         android:text="@string/create_account_text"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
