@@ -25,6 +25,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.mahmutalperenunal.passwordbook.R
 import com.mahmutalperenunal.passwordbook.database.PasswordManagerDatabase
 import com.mahmutalperenunal.passwordbook.database.entities.Entry
@@ -73,13 +74,17 @@ class PasswordActivity : AppCompatActivity() {
         val emptyList = listOf<Entry>()
         viewModel.filteredSearchList.postValue(emptyList)
 
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.password_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+
         binding.passwordBtnNewPassword.setOnClickListener {
             val intent = Intent(this, CreateEditViewPasswordActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        findNavController(R.id.password_fragment).addOnDestinationChangedListener { _, destination, _ ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
 
             when (destination.id) {
                 R.id.passwordFragment -> binding.passwordTopAppBar.title =
@@ -109,11 +114,11 @@ class PasswordActivity : AppCompatActivity() {
 
             R.id.search -> {
 
-                //findNavController(R.id.password_fragment).navigate(R.id.searchPasswordFragment)
+                //navController.navigate(R.id.searchPasswordFragment)
 
-                val myActionMenuItem: MenuItem = item
+                //val myActionMenuItem: MenuItem = item
 
-                val searchView = myActionMenuItem.actionView as androidx.appcompat.widget.SearchView
+                //val searchView = myActionMenuItem.actionView as androidx.appcompat.widget.SearchView
 
                 /*val v: View = searchView.findViewById(R.id.search_plate)
                 v.setBackgroundColor(Color.parseColor("#ffffff"))
@@ -128,7 +133,7 @@ class PasswordActivity : AppCompatActivity() {
                 val searchCloseIcon: ImageView = searchView.findViewById(R.id.search_close_btn) as ImageView
                 searchCloseIcon.setImageResource(R.drawable.ic_clear)*/
 
-                searchView.setOnQueryTextListener(object :
+                /*searchView.setOnQueryTextListener(object :
                     androidx.appcompat.widget.SearchView.OnQueryTextListener {
 
                     override fun onQueryTextSubmit(query: String?): Boolean {
@@ -149,7 +154,7 @@ class PasswordActivity : AppCompatActivity() {
 
                         return false
                     }
-                })
+                })*/
             }
 
             R.id.profile -> {
@@ -166,7 +171,7 @@ class PasswordActivity : AppCompatActivity() {
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun setUpActionBar() {
         setSupportActionBar(binding.passwordTopAppBar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
     }
 
 
