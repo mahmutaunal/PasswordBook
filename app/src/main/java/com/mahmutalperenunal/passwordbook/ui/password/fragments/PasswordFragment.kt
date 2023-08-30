@@ -35,7 +35,8 @@ class PasswordFragment : Fragment() {
             requireContext(),
             viewModel,
             viewLifecycleOwner,
-            view
+            view,
+            (activity as PasswordActivity)
         )
 
         binding.passwordRecyclerView.adapter = adapter

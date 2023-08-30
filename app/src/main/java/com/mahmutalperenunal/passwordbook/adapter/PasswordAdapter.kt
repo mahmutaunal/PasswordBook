@@ -17,6 +17,7 @@ import com.mahmutalperenunal.passwordbook.databinding.PasswordBinding
 import com.mahmutalperenunal.passwordbook.R
 import com.mahmutalperenunal.passwordbook.database.entities.Entry
 import com.mahmutalperenunal.passwordbook.ui.create_edit_view_password.CreateEditViewPasswordActivity
+import com.mahmutalperenunal.passwordbook.ui.password.PasswordActivity
 import com.mahmutalperenunal.passwordbook.ui.viewmodels.CreateEditViewPasswordViewModel
 import com.mahmutalperenunal.passwordbook.util.CompanyListData
 import kotlinx.coroutines.*
@@ -26,7 +27,8 @@ class PasswordAdapter(
     private val mContext: Context,
     private val viewModel: CreateEditViewPasswordViewModel,
     private val owner: LifecycleOwner,
-    private val fragmentView: View
+    private val fragmentView: View,
+    private val activity: PasswordActivity
 ) : RecyclerView.Adapter<PasswordAdapter.PasswordAdapterViewHolder>() {
     inner class PasswordAdapterViewHolder(val binding: PasswordBinding) : RecyclerView.ViewHolder(
         binding.root
@@ -60,20 +62,16 @@ class PasswordAdapter(
 
     override fun onBindViewHolder(holder: PasswordAdapterViewHolder, position: Int) {
 
-
         val entry = differ.currentList[position]
 
         viewModel.getAllEntryDetails(entry.id).observe(owner) { entryDetailList ->
-
 
             holder.binding.passwordPasswordTitleTextView.setBackgroundColor(0x00000000)
             holder.binding.passwordPasswordInfoTextView.setBackgroundColor(0x00000000)
             holder.binding.passwordPasswordIconImageView.setBackgroundColor(0x00000000)
 
-
             holder.binding.passwordPasswordTitleTextView.text = entry.title
             holder.binding.passwordPasswordInfoTextView.text = entry.category
-
 
             val iconId = entry.icon
             val iconList = CompanyListData.companyListData
@@ -86,14 +84,11 @@ class PasswordAdapter(
                 }
             }
 
-
-
             holder.binding.root.setOnClickListener {
                 onItemClickListener?.let {
                     it(entry)
                 }
             }
-
 
             holder.binding.passwordOptionsImageView.setOnClickListener {
 
@@ -162,6 +157,7 @@ class PasswordAdapter(
                                         ).show()
                                         viewModel.getAllEntries().observe(owner) { it1 ->
                                             viewModel.sortedList.postValue(it1)
+                                            activity.binding.passwordNavView.setSelectionAtPosition(1, true)
                                         }
                                     }
                                 }
@@ -179,6 +175,7 @@ class PasswordAdapter(
                                         ).show()
                                         viewModel.getAllEntries().observe(owner) { it1 ->
                                             viewModel.sortedList.postValue(it1)
+                                            activity.binding.passwordNavView.setSelectionAtPosition(1, true)
                                         }
                                     }
 

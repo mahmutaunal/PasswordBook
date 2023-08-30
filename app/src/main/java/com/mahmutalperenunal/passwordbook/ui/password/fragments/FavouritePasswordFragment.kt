@@ -28,7 +28,7 @@ class FavouritePasswordFragment : Fragment() {
 
         val viewModel = (activity as PasswordActivity).viewModel
 
-        val adapter = PasswordAdapter(requireContext(), viewModel, viewLifecycleOwner, view)
+        val adapter = PasswordAdapter(requireContext(), viewModel, viewLifecycleOwner, view, (activity as PasswordActivity))
         binding.favouritePasswordsRecyclerView.adapter = adapter
         binding.favouritePasswordsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
