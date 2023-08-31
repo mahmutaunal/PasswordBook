@@ -9,11 +9,4 @@
         android:title="@string/search"
         app:showAsAction="ifRoom" />
 
-    <item
-        android:id="@+id/profile"
-        android:icon="@drawable/ic_profile"
-        android:iconTint="@color/icon_color"
-        android:title="@string/profile"
-        app:showAsAction="ifRoom" />
-
 </menu>

@@ -20,7 +20,6 @@ import com.mahmutalperenunal.passwordbook.databinding.LayoutViewAccountInfoBindi
 import com.mahmutalperenunal.passwordbook.security.EncryptionDecryption
 import com.mahmutalperenunal.passwordbook.ui.viewmodels.CreateEditViewPasswordViewModel
 
-
 class LogoCompanyViewerAdapter(
     private val viewModel: CreateEditViewPasswordViewModel,
     private val owner: LifecycleOwner,
@@ -85,7 +84,7 @@ class LogoCompanyViewerAdapter(
                 val clip = ClipData.newPlainText(entry.detailType, decryptedData)
                 clipboard?.setPrimaryClip(clip)
 
-                Snackbar.make(mainView, "${entry.detailType} " + "${R.string.copied_text}", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(mainView, "${entry.detailType} " + mContext.getString(R.string.copied_text), Snackbar.LENGTH_SHORT).show()
             }
 
             if (entry.detailType == "Password") {

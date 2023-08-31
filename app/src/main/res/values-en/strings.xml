@@ -87,4 +87,18 @@
     <string name="password_copied_text">Password Copied to Clipboard!</string>
     <string name="please_check_item_text">Please check at least one item!</string>
     <string name="password_length_cannot_zero_text">Password length cannot be zero!</string>
+    <string name="remove_from_favourites_text">Remove from Favourites</string>
+    <string name="yes_text">Yes</string>
+    <string name="deleted_successfully_text">Deleted Successfully</string>
+    <string name="no_text">No</string>
+    <string name="added_to_favourites_text">Added to Favourites</string>
+    <string name="removed_from_favourites_text">Removed from Favourites</string>
+    <string name="delete_description_text">Are you sure you want to delete this entry named as</string>
+    <string name="favourites_text">Favourites</string>
+    <string name="search_for_your_credentials_here_text">Search for your credentials here</string>
+    <string name="exit_text">Exit</string>
+    <string name="others_text">Other</string>
+    <string name="all_text">All</string>
+    <string name="open_text">Open</string>
+    <string name="close_text">Close</string>
 </resources>

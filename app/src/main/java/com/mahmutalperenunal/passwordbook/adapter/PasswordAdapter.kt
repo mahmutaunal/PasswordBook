@@ -22,7 +22,6 @@ import com.mahmutalperenunal.passwordbook.ui.viewmodels.CreateEditViewPasswordVi
 import com.mahmutalperenunal.passwordbook.util.CompanyListData
 import kotlinx.coroutines.*
 
-
 class PasswordAdapter(
     private val mContext: Context,
     private val viewModel: CreateEditViewPasswordViewModel,
@@ -33,7 +32,6 @@ class PasswordAdapter(
     inner class PasswordAdapterViewHolder(val binding: PasswordBinding) : RecyclerView.ViewHolder(
         binding.root
     )
-
 
     private val differCallback = object : DiffUtil.ItemCallback<Entry>() {
         override fun areItemsTheSame(oldItem: Entry, newItem: Entry): Boolean {
@@ -96,9 +94,9 @@ class PasswordAdapter(
                 popupMenu.menuInflater.inflate(R.menu.password_options_menu, popupMenu.menu)
 
                 if (entry.favourite == 0) {
-                    popupMenu.menu[2].title = "Add to Favourites"
+                    popupMenu.menu[2].title = mContext.getString(R.string.add_to_favourites_text)
                 } else {
-                    popupMenu.menu[2].title = "Remove from Favourites"
+                    popupMenu.menu[2].title = mContext.getString(R.string.remove_from_favourites_text)
                 }
 
                 popupMenu.show()
@@ -119,9 +117,9 @@ class PasswordAdapter(
 
                         R.id.passwordOptions_delete -> {
                             AlertDialog.Builder(mContext)
-                                .setTitle("Delete")
-                                .setMessage("Are you sure you want to delete this entry named as ${entry.title}")
-                                .setPositiveButton("Yes") { d, _ ->
+                                .setTitle(mContext.getString(R.string.delete_text))
+                                .setMessage("${mContext.getString(R.string.delete_description_text)}: ${entry.title}")
+                                .setPositiveButton(mContext.getString(R.string.yes_text)) { d, _ ->
                                     for (entryDetail in entryDetailList) {
                                         viewModel.deleteEncryptedKeys(entryDetail.id)
                                     }
@@ -131,12 +129,12 @@ class PasswordAdapter(
                                     d.dismiss()
                                     Snackbar.make(
                                         fragmentView,
-                                        " \"${entry.title}\" Deleted Successfully",
+                                        " \"${entry.title}\" ${mContext.getString(R.string.deleted_successfully_text)}",
                                         Snackbar.LENGTH_SHORT
                                     ).show()
 
 
-                                }.setNegativeButton("No") { d, _ ->
+                                }.setNegativeButton(mContext.getString(R.string.no_text)) { d, _ ->
                                     d.dismiss()
                                 }.create().show()
 
@@ -152,7 +150,7 @@ class PasswordAdapter(
                                     withContext(Dispatchers.Main) {
                                         Snackbar.make(
                                             fragmentView,
-                                            "Added to Favourites",
+                                            mContext.getString(R.string.added_to_favourites_text),
                                             Snackbar.LENGTH_SHORT
                                         ).show()
                                         viewModel.getAllEntries().observe(owner) { it1 ->
@@ -170,7 +168,7 @@ class PasswordAdapter(
                                     withContext(Dispatchers.Main) {
                                         Snackbar.make(
                                             fragmentView,
-                                            "Removed to Favourites",
+                                            mContext.getString(R.string.removed_from_favourites_text),
                                             Snackbar.LENGTH_SHORT
                                         ).show()
                                         viewModel.getAllEntries().observe(owner) { it1 ->
@@ -190,7 +188,6 @@ class PasswordAdapter(
             }
 
         }
-
 
     }
 

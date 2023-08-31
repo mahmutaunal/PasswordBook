@@ -26,7 +26,6 @@ class PasswordManagerRepository(private val db: PasswordManagerDatabase) {
 
     fun sortEntries(category: String) = db.getPasswordManagerDao().sortEntries(category)
 
-
     suspend fun upsertEntryDetail(entryDetail: EntryDetail) =
         db.getPasswordManagerDao().upsertEntryDetail(entryDetail)
 

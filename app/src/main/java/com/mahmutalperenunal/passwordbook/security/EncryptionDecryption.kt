@@ -3,7 +3,6 @@ package com.mahmutalperenunal.passwordbook.security
 import com.mahmutalperenunal.passwordbook.util.EncryptedObject
 import com.tozny.crypto.android.AesCbcWithIntegrity.*
 
-
 class EncryptionDecryption {
 
     init {

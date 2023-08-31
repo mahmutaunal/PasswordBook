@@ -87,4 +87,18 @@
     <string name="password_copied_text">Şifre Panoya Kopyalandı!</string>
     <string name="please_check_item_text">Lütfen en az bir öğeyi kontrol edin!</string>
     <string name="password_length_cannot_zero_text">Şifre uzunluğu sıfır olamaz!</string>
+    <string name="remove_from_favourites_text">Favorilerden Kaldır</string>
+    <string name="yes_text">Evet</string>
+    <string name="deleted_successfully_text">Silme Başarılı</string>
+    <string name="no_text">Hayır</string>
+    <string name="added_to_favourites_text">Favorilere Eklendi</string>
+    <string name="removed_from_favourites_text">Favorilerden Kaldırıldı</string>
+    <string name="delete_description_text">Bu girişi silmek istediğinizden emin misiniz?</string>
+    <string name="favourites_text">Favoriler</string>
+    <string name="search_for_your_credentials_here_text">Kimlik bilgilerinizi burada arayın</string>
+    <string name="exit_text">Çıkış</string>
+    <string name="others_text">Diğer</string>
+    <string name="all_text">Hepsi</string>
+    <string name="open_text">Aç</string>
+    <string name="close_text">Kapat</string>
 </resources>
