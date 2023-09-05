@@ -200,7 +200,7 @@ class CreatePasswordFragment : Fragment() {
                         popupMenu.dismiss()
                     }
 
-                    R.id.accountDetail_phone -> {
+                    R.id.accountDetail_password -> {
                         showBottomSheet(mBottomSheetDialog, sheetBinding, 3)
                         popupMenu.dismiss()
                     }
