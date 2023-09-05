@@ -1,5 +1,6 @@
 package com.mahmutalperenunal.passwordbook.ui.password.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mahmutalperenunal.passwordbook.adapter.PasswordAdapter
 import com.mahmutalperenunal.passwordbook.databinding.FragmentFavouritePasswordBinding
@@ -52,6 +54,25 @@ class FavouritePasswordFragment : Fragment() {
         }
 
         return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                requireActivity().let {
+                    val intent = Intent(it, PasswordActivity::class.java)
+                    it.startActivity(intent)
+                    it.finish()
+                }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
     }
 
 }

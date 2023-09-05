@@ -7,6 +7,14 @@
         android:icon="@drawable/ic_search"
         android:iconTint="@color/icon_color"
         android:title="@string/search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
+
+    <item
+        android:id="@+id/favourites"
+        android:icon="@drawable/ic_favorites"
+        android:iconTint="@color/icon_color"
+        android:title="@string/search"
         app:showAsAction="ifRoom" />
 
 </menu>

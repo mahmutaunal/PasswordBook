@@ -316,6 +316,11 @@ class CreatePasswordFragment : Fragment() {
         return view
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     @SuppressLint("NotifyDataSetChanged")
     private fun showBottomSheet(
         mBottomSheetDialog: RoundedBottomSheetDialog,

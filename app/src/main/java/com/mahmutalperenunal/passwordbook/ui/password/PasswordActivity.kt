@@ -1,37 +1,30 @@
 package com.mahmutalperenunal.passwordbook.ui.password
 
 import android.annotation.SuppressLint
+import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.Color
-import android.graphics.PorterDuff
-import android.graphics.drawable.Drawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
-import android.util.TypedValue
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.lifecycle.Observer
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuItemCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.appcompat.widget.SearchView
 import com.mahmutalperenunal.passwordbook.R
+import com.mahmutalperenunal.passwordbook.adapter.PasswordAdapter
 import com.mahmutalperenunal.passwordbook.database.PasswordManagerDatabase
 import com.mahmutalperenunal.passwordbook.database.entities.Entry
 import com.mahmutalperenunal.passwordbook.databinding.ActivityPasswordBinding
 import com.mahmutalperenunal.passwordbook.repository.PasswordManagerRepository
-import com.mahmutalperenunal.passwordbook.security.EncryptionDecryption
 import com.mahmutalperenunal.passwordbook.ui.create_edit_view_password.CreateEditViewPasswordActivity
 import com.mahmutalperenunal.passwordbook.ui.factories.CreateEditViewPasswordViewModelProviderFactory
 import com.mahmutalperenunal.passwordbook.ui.lock.LockActivity
@@ -45,7 +38,6 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.iconDrawable
 import com.mikepenz.materialdrawer.model.interfaces.nameRes
 import com.mikepenz.materialdrawer.util.updateItem
-import com.mikepenz.materialdrawer.widget.AccountHeaderView
 
 class PasswordActivity : AppCompatActivity() {
 
@@ -66,6 +58,8 @@ class PasswordActivity : AppCompatActivity() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         setUpActionBar()
+
+        binding.passwordBtnNewPassword.visibility = View.VISIBLE
 
         val database = PasswordManagerDatabase(this)
         val repository = PasswordManagerRepository(database)
@@ -137,15 +131,8 @@ class PasswordActivity : AppCompatActivity() {
         }
 
         val item2 = PrimaryDrawerItem().apply {
-            nameRes = R.string.favourites_text
-            identifier = 2
-            iconDrawable = resources.getDrawable(R.drawable.ic_favorites)
-            isSelectable = false
-        }
-
-        val item3 = PrimaryDrawerItem().apply {
             nameRes = R.string.social_text
-            identifier = 3
+            identifier = 2
             iconDrawable = resources.getDrawable(R.drawable.ic_social)
 
             badgeStyle = BadgeStyle().apply {
@@ -155,9 +142,9 @@ class PasswordActivity : AppCompatActivity() {
             }
         }
 
-        val item4 = PrimaryDrawerItem().apply {
+        val item3 = PrimaryDrawerItem().apply {
             nameRes = R.string.mails_text
-            identifier = 4
+            identifier = 3
             iconDrawable = resources.getDrawable(R.drawable.ic_mail)
 
             badgeStyle = BadgeStyle().apply {
@@ -167,9 +154,9 @@ class PasswordActivity : AppCompatActivity() {
             }
         }
 
-        val item5 = PrimaryDrawerItem().apply {
+        val item4 = PrimaryDrawerItem().apply {
             nameRes = R.string.cards_text
-            identifier = 5
+            identifier = 4
             iconDrawable = resources.getDrawable(R.drawable.ic_card)
 
             badgeStyle = BadgeStyle().apply {
@@ -179,9 +166,9 @@ class PasswordActivity : AppCompatActivity() {
             }
         }
 
-        val item6 = PrimaryDrawerItem().apply {
+        val item5 = PrimaryDrawerItem().apply {
             nameRes = R.string.work_text
-            identifier = 6
+            identifier = 5
             iconDrawable = resources.getDrawable(R.drawable.ic_work)
 
             badgeStyle = BadgeStyle().apply {
@@ -191,9 +178,9 @@ class PasswordActivity : AppCompatActivity() {
             }
         }
 
-        val item7 = PrimaryDrawerItem().apply {
+        val item6 = PrimaryDrawerItem().apply {
             nameRes = R.string.others_text
-            identifier = 7
+            identifier = 6
             iconDrawable = resources.getDrawable(R.drawable.ic_others)
 
             badgeStyle = BadgeStyle().apply {
@@ -203,23 +190,23 @@ class PasswordActivity : AppCompatActivity() {
             }
         }
 
-        val item8 = PrimaryDrawerItem().apply {
+        val item7 = PrimaryDrawerItem().apply {
             nameRes = R.string.change_password_text
-            identifier = 8
+            identifier = 7
             iconDrawable = resources.getDrawable(R.drawable.ic_password_change)
             isSelectable = false
         }
 
-        val item9 = PrimaryDrawerItem().apply {
+        val item8 = PrimaryDrawerItem().apply {
             nameRes = R.string.generate_password_text
-            identifier = 9
+            identifier = 8
             iconDrawable = resources.getDrawable(R.drawable.ic_generate_password)
             isSelectable = false
         }
 
-        val item10 = PrimaryDrawerItem().apply {
+        val item9 = PrimaryDrawerItem().apply {
             nameRes = R.string.exit_text
-            identifier = 10
+            identifier = 9
             iconDrawable = resources.getDrawable(R.drawable.ic_exit)
             isSelectable = false
         }
@@ -237,6 +224,15 @@ class PasswordActivity : AppCompatActivity() {
 
         viewModel.sortEntries("Social").observe(this) {
             if (it.isNotEmpty()) {
+                item2.apply {
+                    badge = StringHolder("${it.size}")
+                    binding.passwordNavView.updateItem(item2)
+                }
+            }
+        }
+
+        viewModel.sortEntries("Mails").observe(this) {
+            if (it.isNotEmpty()) {
                 item3.apply {
                     badge = StringHolder("${it.size}")
                     binding.passwordNavView.updateItem(item3)
@@ -244,7 +240,7 @@ class PasswordActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.sortEntries("Mails").observe(this) {
+        viewModel.sortEntries("Cards").observe(this) {
             if (it.isNotEmpty()) {
                 item4.apply {
                     badge = StringHolder("${it.size}")
@@ -253,7 +249,7 @@ class PasswordActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.sortEntries("Cards").observe(this) {
+        viewModel.sortEntries("Work").observe(this) {
             if (it.isNotEmpty()) {
                 item5.apply {
                     badge = StringHolder("${it.size}")
@@ -262,20 +258,11 @@ class PasswordActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.sortEntries("Work").observe(this) {
+        viewModel.sortEntries("Other").observe(this) {
             if (it.isNotEmpty()) {
                 item6.apply {
                     badge = StringHolder("${it.size}")
                     binding.passwordNavView.updateItem(item6)
-                }
-            }
-        }
-
-        viewModel.sortEntries("Other").observe(this) {
-            if (it.isNotEmpty()) {
-                item7.apply {
-                    badge = StringHolder("${it.size}")
-                    binding.passwordNavView.updateItem(item7)
                 }
             }
         }
@@ -288,11 +275,10 @@ class PasswordActivity : AppCompatActivity() {
             item4,
             item5,
             item6,
-            item7,
             DividerDrawerItem(),
+            item7,
             item8,
-            item9,
-            item10
+            item9
         )
 
         // specify a click listener
@@ -306,55 +292,59 @@ class PasswordActivity : AppCompatActivity() {
                         }
                         binding.passwordNavView.updateItem(item1)
                     }
+                    supportActionBar?.title = getString(R.string.app_name)
                 }
                 1 -> {
-                    val navHostFragment = supportFragmentManager.findFragmentById(R.id.password_fragment) as NavHostFragment
-                    val navController = navHostFragment.navController
-                    navController.popBackStack()
-                    navController.navigate(R.id.favouritePasswordFragment)
-                }
-                2 -> {
                     viewModel.sortEntries("Social").observe(this) {
                         viewModel.sortedList.postValue(it)
                     }
+                    supportActionBar?.title = getString(R.string.social_text)
                 }
-                3 -> {
+                2 -> {
                     viewModel.sortEntries("Mails").observe(this) {
                         viewModel.sortedList.postValue(it)
                     }
+                    supportActionBar?.title = getString(R.string.mails_text)
                 }
-                4 -> {
+                3 -> {
                     viewModel.sortEntries("Cards").observe(this) {
                         viewModel.sortedList.postValue(it)
                     }
+                    supportActionBar?.title = getString(R.string.cards_text)
                 }
-                5 -> {
+                4 -> {
                     viewModel.sortEntries("Work").observe(this) {
                         viewModel.sortedList.postValue(it)
                     }
+                    supportActionBar?.title = getString(R.string.work_text)
                 }
-                6 -> {
+                5 -> {
                     viewModel.sortEntries("Other").observe(this) {
                         viewModel.sortedList.postValue(it)
                     }
+                    supportActionBar?.title = getString(R.string.others_text)
                 }
 
-                //position 7 is divider
+                //position 6 is divider
 
-                8 -> {
+                7 -> {
                     val intent = Intent(this, LockActivity::class.java)
                     intent.putExtra("command", "changePassword")
                     startActivity(intent)
                 }
 
-                9 -> {
+                8 -> {
                     val navHostFragment = supportFragmentManager.findFragmentById(R.id.password_fragment) as NavHostFragment
                     val navController = navHostFragment.navController
                     navController.popBackStack()
                     navController.navigate(R.id.generatePasswordFragment)
+
+                    supportActionBar?.setDisplayHomeAsUpEnabled(false)
+
+                    binding.passwordBtnNewPassword.visibility = View.GONE
                 }
 
-                10 -> {
+                9 -> {
                     // Closes the app and removes it from android tasks on device
                     finishAndRemoveTask()
                 }
@@ -372,11 +362,12 @@ class PasswordActivity : AppCompatActivity() {
         return true
     }
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
 
-            /*R.id.search -> {
+            R.id.search -> {
 
                 val navHostFragment = supportFragmentManager.findFragmentById(R.id.password_fragment) as NavHostFragment
                 val navController = navHostFragment.navController
@@ -385,23 +376,11 @@ class PasswordActivity : AppCompatActivity() {
 
                 val myActionMenuItem: MenuItem = item
 
-                val searchView = myActionMenuItem.actionView as androidx.appcompat.widget.SearchView
-
-                //val v: View = searchView.findViewById(R.id.search_plate)
-                //v.setBackgroundColor(Color.parseColor("#ffffff"))
+                val searchView = myActionMenuItem.actionView as SearchView
 
                 searchView.queryHint = resources.getString(R.string.search)
 
-                //val searchText = searchView.findViewById(R.id.search_src_text) as TextView
-                //searchText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20f)
-
-                if (toggle.onOptionsItemSelected(item)) return true
-
-                //val searchCloseIcon: ImageView = searchView.findViewById(R.id.search_close_btn) as ImageView
-                //searchCloseIcon.setImageResource(R.drawable.ic_clear)
-
-                searchView.setOnQueryTextListener(object :
-                    androidx.appcompat.widget.SearchView.OnQueryTextListener {
+                searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
                     override fun onQueryTextSubmit(query: String?): Boolean {
                         return false
@@ -422,7 +401,27 @@ class PasswordActivity : AppCompatActivity() {
                     }
 
                 })
-            }*/
+
+                searchView.setOnCloseListener {
+                    val intent = Intent(this@PasswordActivity, PasswordActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                    false
+                }
+
+                binding.passwordBtnNewPassword.visibility = View.GONE
+            }
+
+            R.id.favourites -> {
+                val navHostFragment = supportFragmentManager.findFragmentById(R.id.password_fragment) as NavHostFragment
+                val navController = navHostFragment.navController
+                navController.popBackStack()
+                navController.navigate(R.id.favouritePasswordFragment)
+
+                supportActionBar?.setDisplayHomeAsUpEnabled(false)
+
+                binding.passwordBtnNewPassword.visibility = View.GONE
+            }
         }
 
         return true
@@ -451,21 +450,48 @@ class PasswordActivity : AppCompatActivity() {
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
 
-        if (doubleBackToExitPressedOnce) {
-            val intentMainExit = Intent(Intent.ACTION_MAIN)
-            intentMainExit.addCategory(Intent.CATEGORY_HOME)
-            intentMainExit.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intentMainExit)
-            finish()
-            return
+        when (binding.passwordTopAppBar.title) {
+            getString(R.string.app_name) -> {
+
+                if (doubleBackToExitPressedOnce) {
+                    val intentMainExit = Intent(Intent.ACTION_MAIN)
+                    intentMainExit.addCategory(Intent.CATEGORY_HOME)
+                    intentMainExit.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intentMainExit)
+                    finish()
+                    return
+                }
+
+                this.doubleBackToExitPressedOnce = true
+                Toast.makeText(this, R.string.press_back_again_text, Toast.LENGTH_SHORT).show()
+
+                Handler(Looper.getMainLooper()).postDelayed({
+                    doubleBackToExitPressedOnce = false
+                }, 3000)
+
+            }
+            getString(R.string.search) -> {
+
+                val intent = Intent(this@PasswordActivity, PasswordActivity::class.java)
+                startActivity(intent)
+                finish()
+
+            }
+            getString(R.string.favourites_text) -> {
+
+                val intent = Intent(this@PasswordActivity, PasswordActivity::class.java)
+                startActivity(intent)
+                finish()
+
+            }
+            else -> {
+
+                val intent = Intent(this@PasswordActivity, PasswordActivity::class.java)
+                startActivity(intent)
+                finish()
+
+            }
         }
-
-        this.doubleBackToExitPressedOnce = true
-        Toast.makeText(this, R.string.press_back_again_text, Toast.LENGTH_SHORT).show()
-
-        Handler(Looper.getMainLooper()).postDelayed({
-            doubleBackToExitPressedOnce = false
-        }, 3000)
 
     }
 
