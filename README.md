@@ -83,6 +83,7 @@ Technologies used in the application:
 - Material Drawer Layout
 - Showcase View
 - Rounded Bottom Sheet
+- Biometric Verification
 
 ## License
 
