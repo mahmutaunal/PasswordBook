@@ -61,6 +61,10 @@ class ViewPasswordsFragment : Fragment() {
             val intent = Intent(requireContext(), PasswordActivity::class.java)
             startActivity(intent)
             (activity as CreateEditViewPasswordActivity).finish()
+            (activity as CreateEditViewPasswordActivity).overridePendingTransition(
+                R.anim.slide_in_left,
+                R.anim.slide_out_right
+            )
         }
 
         val securityClass = EncryptionDecryption()

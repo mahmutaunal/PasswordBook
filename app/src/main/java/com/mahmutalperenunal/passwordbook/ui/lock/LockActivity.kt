@@ -20,6 +20,8 @@ class LockActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLockBinding
     lateinit var viewModel: CreateEditViewPasswordViewModel
 
+    private var command: String? = null
+
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +35,7 @@ class LockActivity : AppCompatActivity() {
         val factory = CreateEditViewPasswordViewModelProviderFactory(repository)
         viewModel = ViewModelProvider(this, factory)[CreateEditViewPasswordViewModel::class.java]
 
-        val command = intent.getStringExtra("command")
+        command = intent.getStringExtra("command")
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.lock_fragment) as NavHostFragment
@@ -57,11 +59,38 @@ class LockActivity : AppCompatActivity() {
 
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
-        super.onBackPressed()
-        val intentMainExit = Intent(Intent.ACTION_MAIN)
-        intentMainExit.addCategory(Intent.CATEGORY_HOME)
-        intentMainExit.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intentMainExit)
-        finish()
+
+        when(command) {
+            "createPassword" -> {
+                val intent = Intent(this@LockActivity, PasswordActivity::class.java)
+                startActivity(intent)
+                finish()
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+            }
+
+            "askForPassword" -> {
+                val intentMainExit = Intent(Intent.ACTION_MAIN)
+                intentMainExit.addCategory(Intent.CATEGORY_HOME)
+                intentMainExit.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intentMainExit)
+                finish()
+            }
+
+            "changePassword" -> {
+                val intent = Intent(this@LockActivity, PasswordActivity::class.java)
+                startActivity(intent)
+                finish()
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+            }
+
+            else -> {
+                val intentMainExit = Intent(Intent.ACTION_MAIN)
+                intentMainExit.addCategory(Intent.CATEGORY_HOME)
+                intentMainExit.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intentMainExit)
+                finish()
+            }
+        }
+
     }
 }

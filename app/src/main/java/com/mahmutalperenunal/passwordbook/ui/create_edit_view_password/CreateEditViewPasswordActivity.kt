@@ -64,7 +64,8 @@ class CreateEditViewPasswordActivity : AppCompatActivity() {
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         super.onBackPressed()
-        val intent = Intent(this, PasswordActivity::class.java)
+        val intent =
+            Intent(this, PasswordActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
         startActivity(intent)
         finish()
     }

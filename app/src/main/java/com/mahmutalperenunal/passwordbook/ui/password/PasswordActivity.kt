@@ -1,8 +1,6 @@
 package com.mahmutalperenunal.passwordbook.ui.password
 
 import android.annotation.SuppressLint
-import android.app.SearchManager
-import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.Color
@@ -15,12 +13,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.MenuItemCompat
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
-import androidx.appcompat.widget.SearchView
 import com.mahmutalperenunal.passwordbook.R
-import com.mahmutalperenunal.passwordbook.adapter.PasswordAdapter
 import com.mahmutalperenunal.passwordbook.database.PasswordManagerDatabase
 import com.mahmutalperenunal.passwordbook.database.entities.Entry
 import com.mahmutalperenunal.passwordbook.databinding.ActivityPasswordBinding
@@ -267,7 +263,7 @@ class PasswordActivity : AppCompatActivity() {
             }
         }
 
-        binding.passwordNavView.itemAdapter.removeRange(0,6)
+        binding.passwordNavView.itemAdapter.removeRange(0, 6)
         binding.passwordNavView.itemAdapter.add(
             item1,
             item2,
@@ -283,7 +279,7 @@ class PasswordActivity : AppCompatActivity() {
 
         // specify a click listener
         binding.passwordNavView.onDrawerItemClickListener = { _, _, position ->
-            when(position) {
+            when (position) {
                 0 -> {
                     viewModel.getAllEntries().observe(this) {
                         viewModel.sortedList.postValue(it)
@@ -294,30 +290,35 @@ class PasswordActivity : AppCompatActivity() {
                     }
                     supportActionBar?.title = getString(R.string.app_name)
                 }
+
                 1 -> {
                     viewModel.sortEntries("Social").observe(this) {
                         viewModel.sortedList.postValue(it)
                     }
                     supportActionBar?.title = getString(R.string.social_text)
                 }
+
                 2 -> {
                     viewModel.sortEntries("Mails").observe(this) {
                         viewModel.sortedList.postValue(it)
                     }
                     supportActionBar?.title = getString(R.string.mails_text)
                 }
+
                 3 -> {
                     viewModel.sortEntries("Cards").observe(this) {
                         viewModel.sortedList.postValue(it)
                     }
                     supportActionBar?.title = getString(R.string.cards_text)
                 }
+
                 4 -> {
                     viewModel.sortEntries("Work").observe(this) {
                         viewModel.sortedList.postValue(it)
                     }
                     supportActionBar?.title = getString(R.string.work_text)
                 }
+
                 5 -> {
                     viewModel.sortEntries("Other").observe(this) {
                         viewModel.sortedList.postValue(it)
@@ -334,7 +335,8 @@ class PasswordActivity : AppCompatActivity() {
                 }
 
                 8 -> {
-                    val navHostFragment = supportFragmentManager.findFragmentById(R.id.password_fragment) as NavHostFragment
+                    val navHostFragment =
+                        supportFragmentManager.findFragmentById(R.id.password_fragment) as NavHostFragment
                     val navController = navHostFragment.navController
                     navController.popBackStack()
                     navController.navigate(R.id.generatePasswordFragment)
@@ -369,7 +371,8 @@ class PasswordActivity : AppCompatActivity() {
 
             R.id.search -> {
 
-                val navHostFragment = supportFragmentManager.findFragmentById(R.id.password_fragment) as NavHostFragment
+                val navHostFragment =
+                    supportFragmentManager.findFragmentById(R.id.password_fragment) as NavHostFragment
                 val navController = navHostFragment.navController
 
                 navController.navigate(R.id.searchPasswordFragment)
@@ -403,17 +406,23 @@ class PasswordActivity : AppCompatActivity() {
                 })
 
                 searchView.setOnCloseListener {
-                    val intent = Intent(this@PasswordActivity, PasswordActivity::class.java)
+                    val intent = Intent(
+                        this@PasswordActivity,
+                        PasswordActivity::class.java
+                    ).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                     startActivity(intent)
                     finish()
                     false
                 }
 
+                supportActionBar?.setDisplayHomeAsUpEnabled(false)
+
                 binding.passwordBtnNewPassword.visibility = View.GONE
             }
 
             R.id.favourites -> {
-                val navHostFragment = supportFragmentManager.findFragmentById(R.id.password_fragment) as NavHostFragment
+                val navHostFragment =
+                    supportFragmentManager.findFragmentById(R.id.password_fragment) as NavHostFragment
                 val navController = navHostFragment.navController
                 navController.popBackStack()
                 navController.navigate(R.id.favouritePasswordFragment)
@@ -421,6 +430,15 @@ class PasswordActivity : AppCompatActivity() {
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
                 binding.passwordBtnNewPassword.visibility = View.GONE
+            }
+
+            R.id.home -> {
+                val intent = Intent(
+                    this@PasswordActivity,
+                    PasswordActivity::class.java
+                ).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                startActivity(intent)
+                finish()
             }
         }
 
@@ -470,23 +488,35 @@ class PasswordActivity : AppCompatActivity() {
                 }, 3000)
 
             }
+
             getString(R.string.search) -> {
 
-                val intent = Intent(this@PasswordActivity, PasswordActivity::class.java)
+                val intent = Intent(
+                    this@PasswordActivity,
+                    PasswordActivity::class.java
+                ).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 startActivity(intent)
                 finish()
 
             }
+
             getString(R.string.favourites_text) -> {
 
-                val intent = Intent(this@PasswordActivity, PasswordActivity::class.java)
+                val intent = Intent(
+                    this@PasswordActivity,
+                    PasswordActivity::class.java
+                ).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 startActivity(intent)
                 finish()
 
             }
+
             else -> {
 
-                val intent = Intent(this@PasswordActivity, PasswordActivity::class.java)
+                val intent = Intent(
+                    this@PasswordActivity,
+                    PasswordActivity::class.java
+                ).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 startActivity(intent)
                 finish()
 

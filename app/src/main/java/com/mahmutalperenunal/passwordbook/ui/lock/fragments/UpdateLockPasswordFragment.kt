@@ -1,6 +1,7 @@
 package com.mahmutalperenunal.passwordbook.ui.lock.fragments
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import com.mahmutalperenunal.passwordbook.database.entities.Lock
 import com.mahmutalperenunal.passwordbook.databinding.FragmentUpdateLockPasswordBinding
 import com.mahmutalperenunal.passwordbook.security.EncryptionDecryption
 import com.mahmutalperenunal.passwordbook.ui.lock.LockActivity
+import com.mahmutalperenunal.passwordbook.ui.password.PasswordActivity
 import com.mahmutalperenunal.passwordbook.util.Passwords
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -129,6 +131,15 @@ class UpdateLockPasswordFragment : Fragment() {
                 }
             }
 
+        }
+
+        binding.updateLockPasswordBackImageView.setOnClickListener {
+            requireActivity().let {
+                val intent = Intent(it, PasswordActivity::class.java)
+                it.startActivity(intent)
+                it.finish()
+                it.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+            }
         }
 
         return view

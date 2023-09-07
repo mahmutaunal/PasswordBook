@@ -121,6 +121,10 @@ class CreatePasswordFragment : Fragment() {
             val intent = Intent(requireContext(), PasswordActivity::class.java)
             startActivity(intent)
             (activity as CreateEditViewPasswordActivity).finish()
+            (activity as CreateEditViewPasswordActivity).overridePendingTransition(
+                R.anim.slide_in_left,
+                R.anim.slide_out_right
+            )
         }
 
         viewModel = (activity as CreateEditViewPasswordActivity).viewModel
@@ -336,7 +340,8 @@ class CreatePasswordFragment : Fragment() {
         when (optionType) {
             0 -> {
                 detailType = "Username"
-                sheetBinding.bottomSheetOptionsEditText.helperText = getString(R.string.eg_text) + getString(R.string.username_text)
+                sheetBinding.bottomSheetOptionsEditText.helperText =
+                    getString(R.string.eg_text) + getString(R.string.username_text)
                 sheetBinding.bottomSheetOptionsEditText.editText?.inputType =
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_NORMAL
             }
@@ -344,7 +349,8 @@ class CreatePasswordFragment : Fragment() {
             1 -> {
                 detailType = "Email"
                 sheetBinding.bottomSheetOptionsEditText.isPasswordVisibilityToggleEnabled = false
-                sheetBinding.bottomSheetOptionsEditText.helperText = getString(R.string.eg_text) + getString(R.string.sample_email_text)
+                sheetBinding.bottomSheetOptionsEditText.helperText =
+                    getString(R.string.eg_text) + getString(R.string.sample_email_text)
                 sheetBinding.bottomSheetOptionsEditText.editText?.inputType =
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_NORMAL
 
@@ -355,13 +361,15 @@ class CreatePasswordFragment : Fragment() {
                 sheetBinding.bottomSheetOptionsEditText.isPasswordVisibilityToggleEnabled = false
                 sheetBinding.bottomSheetOptionsEditText.editText?.inputType =
                     InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL or InputType.TYPE_NUMBER_FLAG_SIGNED or InputType.TYPE_CLASS_PHONE
-                sheetBinding.bottomSheetOptionsEditText.helperText = getString(R.string.eg_text) + getString(R.string.sample_phone_number_text)
+                sheetBinding.bottomSheetOptionsEditText.helperText =
+                    getString(R.string.eg_text) + getString(R.string.sample_phone_number_text)
             }
 
             3 -> {
                 detailType = "Password"
                 sheetBinding.bottomSheetOptionsEditText.isPasswordVisibilityToggleEnabled = true
-                sheetBinding.bottomSheetOptionsEditText.helperText = getString(R.string.strong_password_text)
+                sheetBinding.bottomSheetOptionsEditText.helperText =
+                    getString(R.string.strong_password_text)
                 sheetBinding.bottomSheetOptionsEditText.editText?.inputType =
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             }
@@ -369,7 +377,8 @@ class CreatePasswordFragment : Fragment() {
             4 -> {
                 detailType = "Website"
                 sheetBinding.bottomSheetOptionsEditText.isPasswordVisibilityToggleEnabled = false
-                sheetBinding.bottomSheetOptionsEditText.helperText = getString(R.string.eg_text) + getString(R.string.sample_website_text)
+                sheetBinding.bottomSheetOptionsEditText.helperText =
+                    getString(R.string.eg_text) + getString(R.string.sample_website_text)
                 sheetBinding.bottomSheetOptionsEditText.editText?.inputType =
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_NORMAL
             }
@@ -378,7 +387,8 @@ class CreatePasswordFragment : Fragment() {
                 detailType = "Notes"
                 sheetBinding.bottomSheetOptionsEditText.isPasswordVisibilityToggleEnabled = false
                 sheetBinding.bottomSheetOptionsEditText.editText?.minLines = 3
-                sheetBinding.bottomSheetOptionsEditText.helperText = getString(R.string.some_notes_text)
+                sheetBinding.bottomSheetOptionsEditText.helperText =
+                    getString(R.string.some_notes_text)
                 sheetBinding.bottomSheetOptionsEditText.editText?.inputType =
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_MULTI_LINE
             }

@@ -140,9 +140,16 @@ class EditPasswordFragment : Fragment() {
         var companyIcon = data.icon
 
         binding.editPasswordBackButton.setOnClickListener {
-            val intent = Intent(requireContext(), PasswordActivity::class.java)
+            val intent = Intent(
+                requireContext(),
+                PasswordActivity::class.java
+            )
             startActivity(intent)
             (activity as CreateEditViewPasswordActivity).finish()
+            (activity as CreateEditViewPasswordActivity).overridePendingTransition(
+                R.anim.slide_in_left,
+                R.anim.slide_out_right
+            )
         }
 
         binding.editPasswordIconImageView.setOnClickListener {

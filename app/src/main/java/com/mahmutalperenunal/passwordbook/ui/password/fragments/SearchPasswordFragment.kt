@@ -78,7 +78,10 @@ class SearchPasswordFragment : Fragment() {
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 requireActivity().let {
-                    val intent = Intent(it, PasswordActivity::class.java)
+                    val intent = Intent(
+                        it,
+                        PasswordActivity::class.java
+                    ).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                     it.startActivity(intent)
                     it.finish()
                 }

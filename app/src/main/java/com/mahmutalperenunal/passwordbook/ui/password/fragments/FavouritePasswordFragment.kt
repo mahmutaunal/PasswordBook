@@ -30,7 +30,13 @@ class FavouritePasswordFragment : Fragment() {
 
         val viewModel = (activity as PasswordActivity).viewModel
 
-        val adapter = PasswordAdapter(requireContext(), viewModel, viewLifecycleOwner, view, (activity as PasswordActivity))
+        val adapter = PasswordAdapter(
+            requireContext(),
+            viewModel,
+            viewLifecycleOwner,
+            view,
+            (activity as PasswordActivity)
+        )
         binding.favouritePasswordsRecyclerView.adapter = adapter
         binding.favouritePasswordsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
@@ -66,7 +72,10 @@ class FavouritePasswordFragment : Fragment() {
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 requireActivity().let {
-                    val intent = Intent(it, PasswordActivity::class.java)
+                    val intent = Intent(
+                        it,
+                        PasswordActivity::class.java
+                    ).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                     it.startActivity(intent)
                     it.finish()
                 }
