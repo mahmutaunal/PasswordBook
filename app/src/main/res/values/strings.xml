@@ -101,4 +101,10 @@
     <string name="all_text">Hepsi</string>
     <string name="open_text">Aç</string>
     <string name="close_text">Kapat</string>
+    <string name="cancel_text">İptal</string>
+    <string name="authentication_error_text">Doğrulama hatası</string>
+    <string name="authentication_succeeded_text">Doğrulama başarılı oldu!</string>
+    <string name="authentication_failed_text">Doğrulama başarısız oldu!</string>
+    <string name="biometric_error_text">Bu cihazda biyometrik özellik yok.</string>
+    <string name="biometric_unavailable_text">Biyometrik özellikler şu anda kullanılamıyor.</string>
 </resources>

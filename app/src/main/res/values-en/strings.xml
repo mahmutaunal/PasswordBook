@@ -101,4 +101,10 @@
     <string name="all_text">All</string>
     <string name="open_text">Open</string>
     <string name="close_text">Close</string>
+    <string name="cancel_text">Cancel</string>
+    <string name="authentication_error_text">Authentication error</string>
+    <string name="authentication_succeeded_text">Authentication succeeded!</string>
+    <string name="authentication_failed_text">Authentication failed!</string>
+    <string name="biometric_error_text">No biometric features available on this device.</string>
+    <string name="biometric_unavailable_text">Biometric features are currently unavailable.</string>
 </resources>

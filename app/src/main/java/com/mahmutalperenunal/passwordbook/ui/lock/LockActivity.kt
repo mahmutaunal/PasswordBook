@@ -58,8 +58,10 @@ class LockActivity : AppCompatActivity() {
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         super.onBackPressed()
-        val intent = Intent(this, PasswordActivity::class.java)
-        startActivity(intent)
+        val intentMainExit = Intent(Intent.ACTION_MAIN)
+        intentMainExit.addCategory(Intent.CATEGORY_HOME)
+        intentMainExit.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intentMainExit)
         finish()
     }
 }
