@@ -70,21 +70,6 @@ width="200"
 [<img src="/readme/Screenshot_20230907_124041.png" align="left"
 width="200"
     hspace="10" vspace="10">](/readme/Screenshot_20230907_124041.png)
-    
-##
-##
-##
-##
-##
-##
-##
-##
-##
-##
-##
-##
-##
-##
 
 ## Technologies
 
