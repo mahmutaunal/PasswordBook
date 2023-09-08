@@ -51,11 +51,11 @@ class LockPasswordFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val viewModel = (activity as LockActivity).viewModel
 
-        checkDeviceHasBiometric()
-
         var incorrectPasswordCount = 0
 
         viewModel.getLockPassword().observe(viewLifecycleOwner) { lockData ->
+
+            checkDeviceHasBiometric()
 
             binding.lockPasswordLockPasswordEditText.helperText =
                 "${getString(R.string.password_hint_text)}: ${lockData[0].hint}"
