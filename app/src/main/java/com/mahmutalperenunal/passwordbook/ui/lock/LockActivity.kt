@@ -62,10 +62,11 @@ class LockActivity : AppCompatActivity() {
 
         when(command) {
             "createPassword" -> {
-                val intent = Intent(this@LockActivity, PasswordActivity::class.java)
-                startActivity(intent)
+                val intentMainExit = Intent(Intent.ACTION_MAIN)
+                intentMainExit.addCategory(Intent.CATEGORY_HOME)
+                intentMainExit.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intentMainExit)
                 finish()
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
             }
 
             "askForPassword" -> {
