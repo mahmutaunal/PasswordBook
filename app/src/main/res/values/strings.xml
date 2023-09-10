@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">Parola Defteri</string>
-    <string name="passwords_text">Şifreler</string>
     <string name="search">Ara</string>
-    <string name="profile">Profil</string>
     <string name="create_password_text">Şifre Oluştur</string>
     <string name="press_back_again_text">Tekrar Geri Basın!</string>
     <string name="edit_text">Düzenle</string>
@@ -18,7 +16,6 @@
     <string name="generate_text">Oluştur</string>
     <string name="app_description_text">İki seviyeli şifrelemeyle desteklenen son derece güvenli uygulamamızla tüm hesaplarınızı, şifrelerinizi ve diğer kimlik bilgilerinizi güvenli bir şekilde yönetin.</string>
     <string name="get_started_text">Başla</string>
-    <string name="learn_more_text">Daha Fazla Bilgi Edinin</string>
     <string name="password_hint_text">Şifre İpucu</string>
     <string name="create_password_description_text">Tüm kimlik bilgilerinizi güvence altına almak için bir uygulama kilidi şifresi belirleyin.</string>
     <string name="password_hint_description_text">Parola İpucu, parolanızı unutmanız durumunda hatırlamanıza yardımcı olacaktır.</string>

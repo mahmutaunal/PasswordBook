@@ -49,14 +49,15 @@ class CreateEditViewPasswordActivity : AppCompatActivity() {
             }
             navController.popBackStack()
             navController.navigate(R.id.viewPasswordsFragment, bundle)
-        }
-
-        if (command == "edit") {
+        } else if (command == "edit") {
             val bundle = Bundle().apply {
                 putSerializable("data", data)
             }
             navController.popBackStack()
             navController.navigate(R.id.editPasswordFragment, bundle)
+        } else {
+            navController.popBackStack()
+            navController.navigate(R.id.createPasswordFragment)
         }
     }
 

@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">Password Book</string>
-    <string name="passwords_text">Passwords</string>
     <string name="search">Search</string>
-    <string name="profile">Profile</string>
     <string name="create_password_text">Create Password</string>
     <string name="press_back_again_text">Press Back Again!</string>
     <string name="edit_text">Edit</string>
@@ -18,7 +16,6 @@
     <string name="generate_text">Generate</string>
     <string name="app_description_text">Securely manage all your accounts, passwords and other credentials with our highly secure app powered by two-level encryption.</string>
     <string name="get_started_text">Get Started</string>
-    <string name="learn_more_text">Learn More</string>
     <string name="password_hint_text">Password Hint</string>
     <string name="create_password_description_text">Set an app lock password to secure all your credentials.</string>
     <string name="password_hint_description_text">Password Hint will help you remember your password in case you forget it.</string>
