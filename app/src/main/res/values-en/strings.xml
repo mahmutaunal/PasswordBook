@@ -104,4 +104,6 @@
     <string name="authentication_failed_text">Authentication failed!</string>
     <string name="biometric_error_text">No biometric features available on this device.</string>
     <string name="biometric_unavailable_text">Biometric features are currently unavailable.</string>
+    <string name="add_new_item_text">Click here to add a new item</string>
+    <string name="select_icon_text">Click here to select an icon</string>
 </resources>

@@ -43,21 +43,25 @@ class CreateEditViewPasswordActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.createEditViewPassword_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
-        if (command == "view") {
-            val bundle = Bundle().apply {
-                putSerializable("data", data)
+        when (command) {
+            "view" -> {
+                val bundle = Bundle().apply {
+                    putSerializable("data", data)
+                }
+                navController.popBackStack()
+                navController.navigate(R.id.viewPasswordsFragment, bundle)
             }
-            navController.popBackStack()
-            navController.navigate(R.id.viewPasswordsFragment, bundle)
-        } else if (command == "edit") {
-            val bundle = Bundle().apply {
-                putSerializable("data", data)
+            "edit" -> {
+                val bundle = Bundle().apply {
+                    putSerializable("data", data)
+                }
+                navController.popBackStack()
+                navController.navigate(R.id.editPasswordFragment, bundle)
             }
-            navController.popBackStack()
-            navController.navigate(R.id.editPasswordFragment, bundle)
-        } else {
-            navController.popBackStack()
-            navController.navigate(R.id.createPasswordFragment)
+            else -> {
+                navController.popBackStack()
+                navController.navigate(R.id.createPasswordFragment)
+            }
         }
     }
 

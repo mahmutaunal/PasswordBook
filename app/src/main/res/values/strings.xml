@@ -104,4 +104,6 @@
     <string name="authentication_failed_text">Doğrulama başarısız oldu!</string>
     <string name="biometric_error_text">Bu cihazda biyometrik özellik yok.</string>
     <string name="biometric_unavailable_text">Biyometrik özellikler şu anda kullanılamıyor.</string>
+    <string name="add_new_item_text">Yeni bir öğe eklemek için burayı tıklayın</string>
+        <string name="select_icon_text">Bir simge seçmek için burayı tıklayın</string>
 </resources>

@@ -104,13 +104,13 @@ class CreatePasswordFragment : Fragment() {
         if (num == 1 || num == 2) {
             FancyShowCaseView.Builder(requireActivity())
                 .focusOn(binding.createPasswordNewEntryImageView)
-                .title("Click here to add a new item")
+                .title(getString(R.string.add_new_item_text))
                 .build()
                 .show()
         } else {
             FancyShowCaseView.Builder(requireActivity())
                 .focusOn(binding.createPasswordIconImageView)
-                .title("Click here to select an icon")
+                .title(getString(R.string.select_icon_text))
                 .build()
                 .show()
         }
