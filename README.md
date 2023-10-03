@@ -3,7 +3,7 @@
 <img src="/readme/ic_logo.png" align="left"
 width="200" hspace="10" vspace="10">
 
-Password Book is an application that allows the points kept in the okey game to be stored in the application. 
+The app is designed specifically for Android devices, providing comprehensive password management features. 
 Password Book is free.
 No registration is required to use the Password Book application.
 
