@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="green">#2e7d32</color>
+    <color name="red">#c62828</color>
+
+    <color name="secure_blue_50">#E6F0F7</color>
+    <color name="secure_blue_100">#B3CCE0</color>
+    <color name="secure_blue_300">#6699CC</color>
+    <color name="secure_blue_500">#336699</color>
+    <color name="secure_blue_700">#004C83</color>
+    <color name="secure_blue_900">#002F4F</color>
+</resources>
