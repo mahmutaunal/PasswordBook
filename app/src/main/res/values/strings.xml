@@ -56,4 +56,5 @@
     <string name="username_required">Username cannot be empty</string>
     <string name="password_required">Password cannot be empty</string>
     <string name="biometric_not_available">Biometric not available</string>
+    <string name="passwords">passwords</string>
 </resources>

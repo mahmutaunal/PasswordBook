@@ -56,4 +56,5 @@
     <string name="username_required">Kullanıcı adı boş olamaz</string>
     <string name="password_required">Şifre boş olamaz</string>
     <string name="biometric_not_available">Biometrik doğrulama etkin değil</string>
+    <string name="passwords">sifreler</string>
 </resources>

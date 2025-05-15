@@ -14,7 +14,6 @@ import com.mahmutalperenunal.passwordbook.data.AppDatabase
 import com.mahmutalperenunal.passwordbook.data.PasswordEntity
 import com.mahmutalperenunal.passwordbook.databinding.FragmentHomeBinding
 import com.mahmutalperenunal.passwordbook.utils.CryptoUtils
-import com.mahmutalperenunal.passwordbook.utils.ExportHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -30,6 +29,14 @@ class HomeFragment : Fragment() {
     ) { uri ->
         if (uri != null) {
             importPasswords(uri)
+        }
+    }
+
+    private val exportLauncher = registerForActivityResult(
+        ActivityResultContracts.CreateDocument("text/plain")
+    ) { uri ->
+        if (uri != null) {
+            exportPasswords(uri)
         }
     }
 
@@ -54,17 +61,7 @@ class HomeFragment : Fragment() {
         binding.tbHeader.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.actionExport -> {
-                    CoroutineScope(Dispatchers.IO).launch {
-                        val passwords = AppDatabase.getInstance(requireContext()).passwordDao().getAll()
-                        val file = ExportHelper.exportEncryptedJson(requireContext(), passwords)
-                        launch(Dispatchers.Main) {
-                            if (file != null) {
-                                Toast.makeText(requireContext(), "${requireContext().resources.getString(R.string.exported)}: ${file.absolutePath}", Toast.LENGTH_LONG).show()
-                            } else {
-                                Toast.makeText(requireContext(), requireContext().resources.getString(R.string.export_failed), Toast.LENGTH_SHORT).show()
-                            }
-                        }
-                    }
+                    exportLauncher.launch("${requireContext().resources.getString(R.string.passwords)}_${System.currentTimeMillis()}.txt")
                     true
                 }
 
@@ -123,6 +120,29 @@ class HomeFragment : Fragment() {
                 e.printStackTrace()
                 launch(Dispatchers.Main) {
                     Toast.makeText(requireContext(), "${requireContext().resources.getString(R.string.error)}: ${e.message}", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
+    private fun exportPasswords(uri: Uri) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val passwords = AppDatabase.getInstance(requireContext()).passwordDao().getAll()
+                val json = Gson().toJson(passwords)
+                val encrypted = CryptoUtils.encrypt(json)
+
+                requireContext().contentResolver.openOutputStream(uri)?.use { outputStream ->
+                    outputStream.write(encrypted.toByteArray(Charsets.UTF_8))
+                }
+
+                launch(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), getString(R.string.exported), Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                launch(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), "${getString(R.string.export_failed)}: ${e.message}", Toast.LENGTH_LONG).show()
                 }
             }
         }
