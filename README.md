@@ -1,4 +1,4 @@
-# 🔐 Password Vault
+# 🔐 Password Book
 
 Minimal, offline, and secure password manager built for Android – with modern Material Design, AES-256 encryption, biometric login, and customizable themes & language support.
 
