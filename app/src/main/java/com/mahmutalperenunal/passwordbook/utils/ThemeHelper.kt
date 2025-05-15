@@ -25,4 +25,10 @@ object ThemeHelper {
         prefs.edit { putInt(KEY_THEME, mode.value) }
         AppCompatDelegate.setDefaultNightMode(mode.value)
     }
+
+    fun getSavedTheme(context: Context): ThemeMode {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val themeValue = prefs.getInt(KEY_THEME, ThemeMode.SYSTEM.value)
+        return ThemeMode.entries.firstOrNull { it.value == themeValue } ?: ThemeMode.SYSTEM
+    }
 }

@@ -39,8 +39,9 @@ class PasswordDetailFragment : Fragment() {
         val password = args.password
 
         val toolbar = binding.tbHeader
-        (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
         (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        toolbar.setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
 
         toolbar.setNavigationOnClickListener {
             findNavController().popBackStack()

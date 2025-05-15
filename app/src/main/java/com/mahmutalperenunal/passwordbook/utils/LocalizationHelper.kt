@@ -28,7 +28,12 @@ object LocalizationHelper {
         return setLocale(context, savedLang)
     }
 
-    fun saveLanguage(context: Context, code: String) {
+    fun getSavedLanguage(context: Context): String {
+        val prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        return prefs.getString(KEY_LANGUAGE, "") ?: ""
+    }
+
+    private fun saveLanguage(context: Context, code: String) {
         context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
             .edit { putString(KEY_LANGUAGE, code) }
     }

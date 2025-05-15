@@ -16,6 +16,14 @@ class BottomSheetLanguage : BottomSheetDialogFragment() {
         _binding = BottomSheetLanguageBinding.inflate(layoutInflater)
         dialog.setContentView(binding.root)
 
+        val currentLang = LocalizationHelper.getSavedLanguage(requireContext())
+
+        when (currentLang) {
+            "tr" -> binding.radioTr.isChecked = true
+            "en" -> binding.radioEn.isChecked = true
+            else -> binding.radioSystem.isChecked = true
+        }
+
         binding.radioTr.setOnClickListener {
             LocalizationHelper.setLocale(requireContext(), "tr")
             requireActivity().recreate()

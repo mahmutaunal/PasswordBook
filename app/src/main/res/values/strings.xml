@@ -35,7 +35,7 @@
     <string name="theme">Theme</string>
     <string name="light_dark_or_system_default">Light, Dark or System default</string>
     <string name="language">Language</string>
-    <string name="turkish_or_english">Turkish or English</string>
+    <string name="turkish_or_english">Turkish, English or System default</string>
     <string name="settings">Settings</string>
     <string name="password_detail">Password Detail</string>
     <string name="add_password">Add Password</string>

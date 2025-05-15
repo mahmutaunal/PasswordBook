@@ -35,7 +35,7 @@
     <string name="theme">Tema</string>
     <string name="light_dark_or_system_default">Açık, Koyu veya Sistem varsayılanı</string>
     <string name="language">Dil</string>
-    <string name="turkish_or_english">Türkçe veya İngilizce</string>
+    <string name="turkish_or_english">Türkçe, İngilizce  veya Sistem varsayılanı</string>
     <string name="settings">Ayarlar</string>
     <string name="password_detail">Şifre Detayı</string>
     <string name="add_password">Şifre Ekle</string>

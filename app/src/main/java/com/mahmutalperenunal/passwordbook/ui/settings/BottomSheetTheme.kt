@@ -16,6 +16,12 @@ class BottomSheetTheme : BottomSheetDialogFragment() {
         _binding = BottomSheetThemeBinding.inflate(layoutInflater)
         dialog.setContentView(binding.root)
 
+        when (ThemeHelper.getSavedTheme(requireContext())) {
+            ThemeHelper.ThemeMode.LIGHT -> binding.radioLight.isChecked = true
+            ThemeHelper.ThemeMode.DARK -> binding.radioDark.isChecked = true
+            ThemeHelper.ThemeMode.SYSTEM -> binding.radioSystem.isChecked = true
+        }
+
         binding.radioLight.setOnClickListener {
             ThemeHelper.setTheme(requireContext(), ThemeHelper.ThemeMode.LIGHT)
             requireActivity().recreate()
