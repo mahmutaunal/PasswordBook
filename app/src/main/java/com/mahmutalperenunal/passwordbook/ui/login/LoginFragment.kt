@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.view.*
 import android.widget.TextView
 import android.widget.Toast
+import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -103,8 +104,16 @@ class LoginFragment : Fragment() {
     }
 
     private fun showBiometricPrompt() {
+        val biometricManager = BiometricManager.from(requireContext())
+        if (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)
+            != BiometricManager.BIOMETRIC_SUCCESS) {
+            Toast.makeText(requireContext(), getString(R.string.biometric_not_available), Toast.LENGTH_SHORT).show()
+            return
+        }
+
         val promptInfo = BiometricPrompt.PromptInfo.Builder()
             .setTitle(requireContext().resources.getString(R.string.login_with_biometric))
+            .setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)
             .setNegativeButtonText(requireContext().resources.getString(R.string.cancel))
             .build()
 

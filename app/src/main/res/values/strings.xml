@@ -40,7 +40,6 @@
     <string name="password_detail">Password Detail</string>
     <string name="add_password">Add Password</string>
     <string name="password_copied">Password copied (will be cleared in 30s)</string>
-    <string name="clipboard_cleared">Clipboard cleared</string>
     <string name="signup">Sign Up</string>
     <string name="main_password">Main Password</string>
     <string name="add">Add</string>
@@ -56,4 +55,5 @@
     <string name="criteria_special_char">At least one special character</string>
     <string name="username_required">Username cannot be empty</string>
     <string name="password_required">Password cannot be empty</string>
+    <string name="biometric_not_available">Biometric not available</string>
 </resources>

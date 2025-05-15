@@ -40,7 +40,6 @@
     <string name="password_detail">Şifre Detayı</string>
     <string name="add_password">Şifre Ekle</string>
     <string name="password_copied">Şifre kopyalandı (30 sn içinde temizlenecek)</string>
-    <string name="clipboard_cleared">Panoya kopyalanan şifre temizlendi</string>
     <string name="signup">Kayıt Ol</string>
     <string name="main_password">Ana Şifre</string>
     <string name="add">Ekle</string>
@@ -56,4 +55,5 @@
     <string name="criteria_special_char">En az bir özel karakter</string>
     <string name="username_required">Kullanıcı adı boş olamaz</string>
     <string name="password_required">Şifre boş olamaz</string>
+    <string name="biometric_not_available">Biometrik doğrulama etkin değil</string>
 </resources>

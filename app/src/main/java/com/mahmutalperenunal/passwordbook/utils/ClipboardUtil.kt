@@ -20,7 +20,6 @@ object ClipboardUtil {
         Handler(Looper.getMainLooper()).postDelayed({
             val emptyClip = ClipData.newPlainText("", "")
             clipboard.setPrimaryClip(emptyClip)
-            Toast.makeText(context, context.getString(R.string.clipboard_cleared), Toast.LENGTH_SHORT).show()
         }, clearDelayMs)
     }
 }
