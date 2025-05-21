@@ -42,4 +42,4 @@ Minimal, offline, and secure password manager built for Android – with modern 
 ### Clone the repo
 
 ```bash
-git clone https://github.com/mahmutalperenunal/PasswordBook.git
+git clone https://github.com/mahmutaunal/PasswordBook.git
