@@ -92,6 +92,13 @@ class HomeFragment : Fragment() {
             val passwords = AppDatabase.getInstance(requireContext()).passwordDao().getAll()
             launch(Dispatchers.Main) {
                 passwordAdapter.submitList(passwords)
+                if (passwords.isEmpty()) {
+                    binding.tvEmptyState.visibility = View.VISIBLE
+                    binding.recyclerView.visibility = View.GONE
+                } else {
+                    binding.tvEmptyState.visibility = View.GONE
+                    binding.recyclerView.visibility = View.VISIBLE
+                }
             }
         }
     }

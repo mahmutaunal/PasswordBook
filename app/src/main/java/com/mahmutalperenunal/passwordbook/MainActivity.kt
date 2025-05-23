@@ -3,11 +3,8 @@ package com.mahmutalperenunal.passwordbook
 import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.mahmutalperenunal.passwordbook.databinding.ActivityMainBinding
@@ -37,12 +34,17 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         navController = navHostFragment.navController
 
-        window.statusBarColor = android.graphics.Color.TRANSPARENT
-        window.navigationBarColor = android.graphics.Color.TRANSPARENT
+        val barColor = getColor(R.color.background_color)
+        window.statusBarColor = barColor
+        window.navigationBarColor = barColor
 
         WindowCompat.getInsetsController(window, window.decorView).apply {
-            isAppearanceLightStatusBars = true
-            isAppearanceLightNavigationBars = true
+            val isDark = resources.configuration.uiMode and
+                    android.content.res.Configuration.UI_MODE_NIGHT_MASK ==
+                    android.content.res.Configuration.UI_MODE_NIGHT_YES
+
+            isAppearanceLightStatusBars = !isDark
+            isAppearanceLightNavigationBars = !isDark
         }
     }
 

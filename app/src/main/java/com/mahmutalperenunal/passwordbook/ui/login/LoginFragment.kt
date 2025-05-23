@@ -96,6 +96,14 @@ class LoginFragment : Fragment() {
 
                 override fun afterTextChanged(s: Editable?) {}
             })
+
+            binding.etMasterPassword.setOnFocusChangeListener { _, hasFocus ->
+                if (hasFocus) {
+                    binding.nestedScrollView.post {
+                        binding.nestedScrollView.smoothScrollTo(0, binding.passwordCriteriaLayout.bottom)
+                    }
+                }
+            }
         }
     }
 
@@ -105,7 +113,7 @@ class LoginFragment : Fragment() {
 
     private fun showBiometricPrompt() {
         val biometricManager = BiometricManager.from(requireContext())
-        if (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)
+        if (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_WEAK or BiometricManager.Authenticators.DEVICE_CREDENTIAL)
             != BiometricManager.BIOMETRIC_SUCCESS) {
             Toast.makeText(requireContext(), getString(R.string.biometric_not_available), Toast.LENGTH_SHORT).show()
             return
@@ -113,8 +121,8 @@ class LoginFragment : Fragment() {
 
         val promptInfo = BiometricPrompt.PromptInfo.Builder()
             .setTitle(requireContext().resources.getString(R.string.login_with_biometric))
-            .setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)
-            .setNegativeButtonText(requireContext().resources.getString(R.string.cancel))
+            .setSubtitle(getString(R.string.use_fingerprint_face_recognition_or_screen_lock))
+            .setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_WEAK or BiometricManager.Authenticators.DEVICE_CREDENTIAL)
             .build()
 
         val biometricPrompt = BiometricPrompt(this, ContextCompat.getMainExecutor(requireContext()),
